@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bars_bg">#FF0000</color>
     <color name="notification_bar">#A80000</color>
+    <color name="red">#FF1100</color>
 </resources>
