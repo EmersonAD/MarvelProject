@@ -2,4 +2,6 @@
     <string name="app_name">MarvelProject</string>
     <string name="favorites">Favorites</string>
     <string name="home">Home</string>
+    <string name="description_details">asdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKK</string>
+    <string name="title_details">Title</string>
 </resources>

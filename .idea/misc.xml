@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/background_item.xml" value="0.169" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.169" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/ic_fab_favorite.xml" value="0.2115" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/ic_favorite.xml" value="0.1685" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/ic_logo.xml" value="0.1685" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/shadow.xml" value="0.169" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/shape_bg.xml" value="0.1685" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/shape_item.xml" value="0.1685" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />

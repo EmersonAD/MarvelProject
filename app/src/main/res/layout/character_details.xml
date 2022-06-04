@@ -1,63 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black">
 
 
-    <ImageView
-        android:id="@+id/imgDetailsBg"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ghostridder"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    
-    <View
-        android:id="@+id/viewDetails"
-        android:layout_width="200dp"
-        android:layout_height="280dp"
-        android:background="@drawable/shape_item"
-        android:layout_marginTop="130dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
-    <ImageView
-        android:id="@+id/imgDetailsPrincipal"
-        android:layout_width="180dp"
-        android:layout_height="260dp"
-        android:src="@drawable/ghostridder"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="@id/viewDetails"
-        app:layout_constraintStart_toStartOf="@id/viewDetails"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPoster"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="11:9"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ghostridder"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/viewShadowBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintTop_toTopOf="@id/imgPoster"
+        app:layout_constraintStart_toStartOf="@id/imgPoster"
+        app:layout_constraintBottom_toBottomOf="@id/imgPoster"
+        app:layout_constraintEnd_toEndOf="@id/imgPoster"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/background_item"
+        android:elevation="2dp"
+        android:translationY="-60dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgPoster"
+        app:layout_constraintTop_toBottomOf="@id/imgPoster"
+        app:layout_constraintStart_toStartOf="@id/imgPoster">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="160dp"
+            android:layout_height="220dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/ghostridder"/>
+
+
+
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/txtTitleDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        android:text="@string/title_details"
         android:textColor="@color/white"
-        android:textSize="22sp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewDetails" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cardViewDetails"
+        app:layout_constraintTop_toBottomOf="@id/imgPoster" />
 
     <TextView
         android:id="@+id/txtDescriptionDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="asdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKKasdasdadajsdnaisdnaKKKKKKKKKKKKKKKKKKKKKK"
+        android:text="@string/description_details"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/fabDetails"
+        android:maxLines="8"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtTitleDetails" />
@@ -67,8 +85,8 @@
         android:id="@+id/fabDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:layout_margin="24dp"
+        android:src="@drawable/ic_favorite"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
