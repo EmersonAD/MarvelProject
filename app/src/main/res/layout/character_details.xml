@@ -47,7 +47,6 @@
 
     </androidx.cardview.widget.CardView>
 
-
     <TextView
         android:id="@+id/txtTitleDetails"
         android:layout_width="0dp"
@@ -76,7 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtTitleDetails" />
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabDetails"
         android:layout_width="wrap_content"
@@ -87,7 +85,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:fabSize="normal"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
