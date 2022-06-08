@@ -8,5 +8,19 @@
         android:id="@+id/homeFragment"
         android:name="com.souzaemerson.marvelproject.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.souzaemerson.marvelproject.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/character_details" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.souzaemerson.marvelproject.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>
