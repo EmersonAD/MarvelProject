@@ -14,12 +14,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/toolbar">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgLogoToolbar"
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
-            android:layout_height="?attr/actionBarSize"
-            android:scaleType="center"
-            android:src="@drawable/ic_logo" />
+            android:layout_height="wrap_content"
+            android:text="@string/title_marvel_toolbar"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:fontFamily="@font/marvel_font"
+            android:textSize="38sp"
+            android:textStyle="bold"/>
 
     </androidx.appcompat.widget.Toolbar>
 

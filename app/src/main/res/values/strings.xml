@@ -8,4 +8,6 @@
     <string name="toolbar_search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_marvel_toolbar">MARVEL</string>
+    <string name="title_favorite_fragment">Favoritos</string>
 </resources>

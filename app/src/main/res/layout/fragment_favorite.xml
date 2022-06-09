@@ -19,12 +19,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favoritos"
+            android:text="@string/title_favorite_fragment"
             android:textColor="@color/white"
             android:textAllCaps="true"
             android:textSize="38sp"
             android:textStyle="bold"
-            android:fontFamily="@font/marvel2"/>
+            android:fontFamily="@font/marvel_font"/>
 
     </androidx.appcompat.widget.Toolbar>
 
