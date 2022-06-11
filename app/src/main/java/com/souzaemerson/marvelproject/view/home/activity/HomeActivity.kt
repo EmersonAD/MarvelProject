@@ -1,10 +1,11 @@
-package com.souzaemerson.marvelproject
+package com.souzaemerson.marvelproject.view.home.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
