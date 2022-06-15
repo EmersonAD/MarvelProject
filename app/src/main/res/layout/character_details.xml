@@ -10,66 +10,74 @@
         android:id="@+id/imgPoster"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="11:9"
         android:scaleType="centerCrop"
         android:src="@drawable/ghostridder"
+        app:layout_constraintDimensionRatio="11:9"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
-        android:id="@+id/viewShadowBg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/shadow"
-        app:layout_constraintTop_toTopOf="@id/imgPoster"
-        app:layout_constraintStart_toStartOf="@id/imgPoster"
         app:layout_constraintBottom_toBottomOf="@id/imgPoster"
-        app:layout_constraintEnd_toEndOf="@id/imgPoster"/>
+        app:layout_constraintEnd_toEndOf="@id/imgPoster"
+        app:layout_constraintStart_toStartOf="@id/imgPoster"
+        app:layout_constraintTop_toTopOf="@id/imgPoster"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewDetails"
+        android:id="@+id/cardDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/background_item"
         android:elevation="2dp"
-        android:translationY="-60dp"
+        android:translationX="30dp"
+        android:translationY="-30dp"
         app:layout_constraintBottom_toBottomOf="@id/imgPoster"
-        app:layout_constraintTop_toBottomOf="@id/imgPoster"
-        app:layout_constraintStart_toStartOf="@id/imgPoster">
+        app:layout_constraintStart_toStartOf="@id/imgPoster"
+        app:layout_constraintTop_toBottomOf="@+id/imgPoster">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDetail"
             android:layout_width="160dp"
             android:layout_height="220dp"
+            android:scaleType="centerCrop"
             android:layout_margin="2dp"
-            android:background="@drawable/ghostridder"/>
+            android:background="@drawable/ghostridder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/txtTitleDetails"
-        android:layout_width="0dp"
+        android:layout_width="336dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/title_details"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/cardViewDetails"
+        app:layout_constraintStart_toStartOf="@id/cardDetail"
         app:layout_constraintTop_toBottomOf="@id/imgPoster" />
 
     <TextView
         android:id="@+id/txtDescriptionDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_margin="20dp"
         android:text="@string/description_details"
         android:textColor="@color/white"
         android:textSize="14sp"
-        android:maxLines="8"
+        android:maxLines="5"
         android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,10 +88,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/white"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:fabSize="normal"/>
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

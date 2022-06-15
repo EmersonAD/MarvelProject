@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiService {
 
-    private fun initRetrofit(): Retrofit{
+    private fun initRetrofit(): Retrofit {
         val gson = GsonBuilder().setLenient().create()
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)

@@ -5,29 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.home.activity.HomeActivity"
-    android:background="@color/black">
+    android:background="@color/black"
+    tools:context=".view.home.activity.HomeActivity">
 
    <fragment
        android:id="@+id/nav_host_fragment"
        android:name="androidx.navigation.fragment.NavHostFragment"
        android:layout_width="0dp"
        android:layout_height="0dp"
-       app:defaultNavHost="true"
+       app:defaultNavHost = "true"
        app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintBottom_toTopOf="@id/bottom_navigator"
-       app:navGraph="@navigation/nav_home_graph"/>
+       app:navGraph = "@navigation/nav_home_graph"/>
 
    <com.google.android.material.bottomnavigation.BottomNavigationView
        android:id="@+id/bottom_navigator"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="56dp"
        android:background="@color/black"
        app:menu="@menu/bottom_navigator"
        app:labelVisibilityMode="selected"
-       android:foregroundTint="@color/red"
        app:itemIconTint="@color/white"
        app:itemTextColor="@color/white"
        app:layout_constraintBottom_toBottomOf="parent"

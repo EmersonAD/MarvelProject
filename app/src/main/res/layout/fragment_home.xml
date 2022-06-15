@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
-    tools:context=".view.fragment.home.HomeFragment">
+    tools:context=".view.fragment.home.HomeFragment"
+    android:background="@color/black">
 
-       <include android:id="@+id/includeToolbar"
+       <include
+           android:id="@+id/includeToolbar"
            layout="@layout/toolbar_layout"
            app:layout_constraintTop_toTopOf="parent"
            app:layout_constraintStart_toStartOf="parent"
@@ -17,16 +19,13 @@
            android:id="@+id/rvTest"
            android:layout_width="match_parent"
            android:layout_height="0dp"
-           tools:listitem="@layout/character_item"
-           android:layout_margin="2dp"
-           tools:itemCount="20"
-           app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-           app:spanCount="3"
            app:layout_constraintTop_toBottomOf="@id/includeToolbar"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintBottom_toBottomOf="parent"/>
-
-
+           app:layout_constraintBottom_toBottomOf="parent"
+           tools:listitem="@layout/character_item"
+           tools:itemCount="20"
+           app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+           app:spanCount="3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
