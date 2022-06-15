@@ -2,6 +2,7 @@ package com.souzaemerson.marvelproject.data.network
 
 import com.google.gson.GsonBuilder
 import com.souzaemerson.marvelproject.BuildConfig
+import com.souzaemerson.marvelproject.util.baseUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,7 +18,7 @@ object ApiService {
         val client = OkHttpClient.Builder().addInterceptor(logging).build()
 
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(baseUrl())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()

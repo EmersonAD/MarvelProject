@@ -16,7 +16,7 @@ data class Data(
     @SerializedName("count")
 
     val count: Long,
-    @SerializedName("result")
+    @SerializedName("results")
 
-    val result: List<Results>
+    val results: List<Results>
 ): Serializable
