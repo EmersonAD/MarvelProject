@@ -41,21 +41,8 @@ class HomeFragment : Fragment() {
         repository = CharactersRepositoryImpl(ApiService.service)
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
-
         getCharacters()
         observeVMEvents()
-    }
-
-    private fun setAdapter(characterList: MutableList<Results>){
-        characterAdapter = CharacterAdapter(characterList)
-    }
-
-    private fun setRecyclerView(characterList: MutableList<Results>) {
-        setAdapter(characterList = characterList)
-        binding.rvTest.apply {
-            setHasFixedSize(true)
-            adapter = characterAdapter
-        }
     }
 
     private fun getCharacters() {
@@ -81,6 +68,18 @@ class HomeFragment : Fragment() {
                     Timber.tag("Loading").i(it.loading.toString())
                 }
             }
+        }
+    }
+
+    private fun setAdapter(characterList: MutableList<Results>) {
+        characterAdapter = CharacterAdapter(characterList)
+    }
+
+    private fun setRecyclerView(characterList: MutableList<Results>) {
+        setAdapter(characterList = characterList)
+        binding.rvTest.apply {
+            setHasFixedSize(true)
+            adapter = characterAdapter
         }
     }
 }

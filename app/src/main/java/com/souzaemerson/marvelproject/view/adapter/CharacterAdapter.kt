@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.CharacterItemBinding
 
-class CharacterAdapter(val characterList: MutableList<Results>) :
+class CharacterAdapter(private val characterList: MutableList<Results>) :
     RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     class CharacterViewHolder(private val binding: CharacterItemBinding) :

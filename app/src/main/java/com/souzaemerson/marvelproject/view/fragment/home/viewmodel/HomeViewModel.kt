@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 class HomeViewModel(
     private val repository: CharacterRepository,
-    val ioDispatcher: CoroutineDispatcher
+    private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _response = MutableLiveData<State<CharacterResponse>>()
@@ -34,8 +34,8 @@ class HomeViewModel(
     }
 
     class HomeViewModelProviderFactory(
-        val repository: CharacterRepository,
-        val ioDispatcher: CoroutineDispatcher
+        private val repository: CharacterRepository,
+        private val ioDispatcher: CoroutineDispatcher
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {

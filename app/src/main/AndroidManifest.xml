@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MarvelProject"
+        android:theme="@style/Theme.NewMarvelTheme"
         tools:targetApi="31">
         <activity
             android:name="com.souzaemerson.marvelproject.view.home.activity.HomeActivity"
