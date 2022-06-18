@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,29 +7,28 @@
     android:background="@color/black"
     tools:context=".view.home.activity.HomeActivity">
 
-   <fragment
-       android:id="@+id/nav_host_fragment"
-       android:name="androidx.navigation.fragment.NavHostFragment"
-       android:layout_width="0dp"
-       android:layout_height="0dp"
-       app:defaultNavHost = "true"
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintBottom_toTopOf="@id/bottom_navigator"
-       app:navGraph = "@navigation/nav_home_graph"/>
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_home_graph" />
 
-   <com.google.android.material.bottomnavigation.BottomNavigationView
-       android:id="@+id/bottom_navigator"
-       android:layout_width="match_parent"
-       android:layout_height="56dp"
-       android:background="@color/black"
-       app:menu="@menu/bottom_navigator"
-       app:labelVisibilityMode="selected"
-       app:itemIconTint="@color/white"
-       app:itemTextColor="@color/white"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/black"
+        app:itemIconTint="@color/color_item_bottom"
+        app:labelVisibilityMode="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

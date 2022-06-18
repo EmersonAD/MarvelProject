@@ -3,10 +3,12 @@
 
     <item android:id="@+id/homeFragment"
         android:title="@string/home"
+        android:enabled="true"
         android:icon="@drawable/ic_home"/>
 
     <item android:id="@+id/favoriteFragment"
         android:title="@string/favorites"
+        android:enabled="true"
         android:icon="@drawable/ic_favorite"/>
 
 </menu>

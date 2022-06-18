@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { response ->
-                        Timber.tag("Sucesso").i(response.toString())
+                        Timber.tag("Success").i(response.toString())
                         setRecyclerView(response.data.results)
                     }
                 }
