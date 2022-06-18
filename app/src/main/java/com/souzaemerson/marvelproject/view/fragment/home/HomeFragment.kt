@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
+import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.network.ApiService
@@ -58,7 +60,7 @@ class HomeFragment : Fragment() {
                 Status.SUCCESS -> {
                     it.data?.let { response ->
                         Timber.tag("Sucesso").i(response.toString())
-                        setRecyclerView(response.data.results as MutableList<Results>)
+                        setRecyclerView(response.data.results)
                     }
                 }
                 Status.ERROR -> {
@@ -71,11 +73,16 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setAdapter(characterList: MutableList<Results>) {
-        characterAdapter = CharacterAdapter(characterList)
+    private fun setAdapter(characterList: List<Results>) {
+        characterAdapter = CharacterAdapter(characterList) { character ->
+            findNavController().navigate(R.id.action_homeFragment_to_detailFragment,
+                Bundle().apply {
+                    putSerializable("CHARACTER", character)
+                })
+        }
     }
 
-    private fun setRecyclerView(characterList: MutableList<Results>) {
+    private fun setRecyclerView(characterList: List<Results>) {
         setAdapter(characterList = characterList)
         binding.rvTest.apply {
             setHasFixedSize(true)
