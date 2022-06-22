@@ -9,7 +9,7 @@ import com.souzaemerson.marvelproject.databinding.CharacterItemBinding
 
 class CharacterAdapter(
     private val characterList: List<Results>,
-    private val itemClick: ((item: Results) -> Unit),
+    private val itemClick: ((item: Results) -> Unit)
 ) :
     RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 

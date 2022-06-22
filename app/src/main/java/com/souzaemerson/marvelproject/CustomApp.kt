@@ -1,7 +1,6 @@
 package com.souzaemerson.marvelproject
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
 import timber.log.Timber
 
 class CustomApp: Application() {

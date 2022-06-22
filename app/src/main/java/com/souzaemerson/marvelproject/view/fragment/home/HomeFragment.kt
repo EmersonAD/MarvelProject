@@ -1,14 +1,19 @@
 package com.souzaemerson.marvelproject.view.fragment.home
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
+import com.souzaemerson.marvelproject.core.BaseFragment
 import com.souzaemerson.marvelproject.core.Status
+import com.souzaemerson.marvelproject.core.hasInternet
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.network.ApiService
 import com.souzaemerson.marvelproject.data.repository.CharacterRepository
@@ -22,7 +27,7 @@ import com.souzaemerson.marvelproject.view.fragment.home.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
     lateinit var viewModel: HomeViewModel
     lateinit var repository: CharacterRepository
 
@@ -41,10 +46,24 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         repository = CharactersRepositoryImpl(ApiService.service)
+        viewModel = HomeViewModel(repository, Dispatchers.IO)
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
-        getCharacters()
+
+        checkConnection()
         observeVMEvents()
+    }
+
+    override fun checkConnection() {
+        if (hasInternet(context)){
+            getCharacters()
+        }else{
+            AlertDialog.Builder(context)
+                .setTitle("Erro na internet!")
+                .setMessage("Verifique sua conexão e tente novamente.")
+                .setPositiveButton("Confirmar"){_, _ ->}
+                .show()
+        }
     }
 
     private fun getCharacters() {
