@@ -10,4 +10,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_marvel_toolbar">MARVEL</string>
     <string name="title_favorite_fragment">Favoritos</string>
+    <string name="verify_internet">Verifique sua internet e tente novamente!</string>
+    <string name="connection_error">Erro de conexão</string>
+    <string name="dialog_confirm">Confirmar</string>
 </resources>

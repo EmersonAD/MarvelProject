@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.BaseFragment
 import com.souzaemerson.marvelproject.core.Status
@@ -37,7 +38,7 @@ class HomeFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,7 +47,6 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         repository = CharactersRepositoryImpl(ApiService.service)
-        viewModel = HomeViewModel(repository, Dispatchers.IO)
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
 
@@ -59,9 +59,9 @@ class HomeFragment : BaseFragment() {
             getCharacters()
         }else{
             AlertDialog.Builder(context)
-                .setTitle("Erro na internet!")
-                .setMessage("Verifique sua conexão e tente novamente.")
-                .setPositiveButton("Confirmar"){_, _ ->}
+                .setTitle(getString(R.string.connection_error))
+                .setMessage(getString(R.string.verify_internet))
+                .setPositiveButton(getString(R.string.dialog_confirm)){ _, _ ->}
                 .show()
         }
     }
