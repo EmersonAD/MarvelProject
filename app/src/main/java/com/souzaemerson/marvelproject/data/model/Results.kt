@@ -1,10 +1,13 @@
 package com.souzaemerson.marvelproject.data.model
 
-import android.provider.CalendarContract
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+@Entity(tableName = "results_table")
 data class Results(
+    @PrimaryKey
     @SerializedName("id")
     val id: Long,
     @SerializedName("name")
