@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.souzaemerson.marvelproject.data.db.converters.Converters
 import com.souzaemerson.marvelproject.data.model.Results
 
 @Database(entities = [Results::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun characterDao(): CharacterDAO

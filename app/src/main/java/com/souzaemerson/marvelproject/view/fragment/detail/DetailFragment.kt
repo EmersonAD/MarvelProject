@@ -7,10 +7,23 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.souzaemerson.marvelproject.core.Status
+import com.souzaemerson.marvelproject.data.db.AppDatabase
+import com.souzaemerson.marvelproject.data.db.CharacterDAO
+import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
+import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
+import com.souzaemerson.marvelproject.view.fragment.detail.viewmodel.DetailViewModel
+import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 
 class DetailFragment : Fragment() {
+    lateinit var viewModel: DetailViewModel
+    lateinit var repository: DatabaseRepository
+    private val dao: CharacterDAO by lazy {
+        AppDatabase.getDb(requireContext()).characterDao()
+    }
     private lateinit var binding: CharacterDetailsBinding
     private lateinit var character: Results
 
@@ -26,6 +39,10 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         character = arguments?.getSerializable("CHARACTER") as Results
 
+        repository = DatabaseRepositoryImpl(dao)
+        viewModel = DetailViewModel.DetailViewModelProviderFactory(repository, Dispatchers.IO)
+            .create(DetailViewModel::class.java)
+
         binding.run {
 
             getGlide(imgPoster)
@@ -36,6 +53,28 @@ class DetailFragment : Fragment() {
 
             txtDescriptionDetails.text = character.description
 
+            fabDetails.setOnClickListener {
+                viewModel.insertCharacters(character)
+
+            }
+        }
+        observeVMEvents()
+    }
+
+    private fun observeVMEvents(){
+        viewModel.response.observe(viewLifecycleOwner){
+
+            when(it.status){
+                Status.SUCCESS -> {
+                    it.data?.let { response ->
+                        Timber.tag("Success").i(response.toString())
+                    }
+                }
+                Status.ERROR ->{
+                    Timber.tag("Error").i(it.error)
+                }
+                Status.LOADING ->{}
+            }
         }
     }
 
