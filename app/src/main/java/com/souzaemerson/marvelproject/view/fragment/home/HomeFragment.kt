@@ -93,6 +93,7 @@ class HomeFragment : BaseFragment() {
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment,
                 Bundle().apply {
                     putSerializable("CHARACTER", character)
+
                 })
         }
     }

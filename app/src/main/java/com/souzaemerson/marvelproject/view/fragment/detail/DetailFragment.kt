@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
 import com.souzaemerson.marvelproject.data.db.CharacterDAO
@@ -16,6 +18,7 @@ import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
 import com.souzaemerson.marvelproject.view.fragment.detail.viewmodel.DetailViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class DetailFragment : Fragment() {
@@ -43,6 +46,7 @@ class DetailFragment : Fragment() {
         viewModel = DetailViewModel.DetailViewModelProviderFactory(repository, Dispatchers.IO)
             .create(DetailViewModel::class.java)
 
+
         binding.run {
 
             getGlide(imgPoster)
@@ -55,10 +59,20 @@ class DetailFragment : Fragment() {
 
             fabDetails.setOnClickListener {
                 viewModel.insertCharacters(character)
-
+                fabDetails.setImageResource(R.drawable.ic_favorite)
             }
         }
+
+        setColorHeart()
         observeVMEvents()
+    }
+
+    private fun setColorHeart() {
+        lifecycleScope.launch {
+            dao.getFavoriteCharacter(character.id)?.let {
+                binding.fabDetails.setImageResource(R.drawable.ic_favorite)
+            }
+        }
     }
 
     private fun observeVMEvents(){

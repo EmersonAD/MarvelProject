@@ -15,4 +15,7 @@ interface CharacterDAO {
 
     @Delete
     suspend fun deleteCharacter(result: Results)
+
+    @Query("SELECT * FROM results_table WHERE id = :characterId")
+    suspend fun getFavoriteCharacter(characterId: Long): Results?
 }
