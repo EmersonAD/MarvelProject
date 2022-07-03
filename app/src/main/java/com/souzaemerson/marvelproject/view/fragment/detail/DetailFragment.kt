@@ -54,7 +54,6 @@ class DetailFragment : Fragment() {
             getGlide(imgDetail)
 
             txtTitleDetails.text = character.name
-
             txtDescriptionDetails.text = character.description
 
             fabDetails.setOnClickListener {
@@ -63,13 +62,13 @@ class DetailFragment : Fragment() {
             }
         }
 
-        setColorHeart()
+        setColorHeart(character.id)
         observeVMEvents()
     }
 
-    private fun setColorHeart() {
+    private fun setColorHeart(characterId: Long) {
         lifecycleScope.launch {
-            dao.getFavoriteCharacter(character.id)?.let {
+            dao.getFavoriteCharacter(characterId)?.let {
                 binding.fabDetails.setImageResource(R.drawable.ic_favorite)
             }
         }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.BaseFragment
 import com.souzaemerson.marvelproject.core.Status
@@ -80,6 +81,9 @@ class HomeFragment : BaseFragment() {
                 }
                 Status.ERROR -> {
                     Timber.tag("Error").i(it.error)
+                  val snack = Snackbar.make(binding.container, "Not found", Snackbar.LENGTH_INDEFINITE)
+                    snack.setAction("Confirmar"){}
+                    snack.show()
                 }
                 Status.LOADING -> {
                     Timber.tag("Loading").i(it.loading.toString())
@@ -89,13 +93,13 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setAdapter(characterList: List<Results>) {
-        characterAdapter = CharacterAdapter(characterList) { character ->
+        characterAdapter = CharacterAdapter(characterList, { character ->
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment,
                 Bundle().apply {
                     putSerializable("CHARACTER", character)
 
                 })
-        }
+        })
     }
 
     private fun setRecyclerView(characterList: List<Results>) {

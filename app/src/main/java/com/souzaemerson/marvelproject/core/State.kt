@@ -16,5 +16,4 @@ data class State<out T>(
         fun <T> loading(loading: Boolean): State<T> =
             State(Status.LOADING, loading, null, null)
     }
-
 }

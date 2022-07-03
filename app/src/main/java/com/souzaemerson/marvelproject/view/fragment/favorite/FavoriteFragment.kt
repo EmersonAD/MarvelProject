@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
@@ -61,12 +62,20 @@ class FavoriteFragment : Fragment(){
     }
 
     private fun setAdapter(characterList: List<Results>){
-        favoriteAdapter = CharacterAdapter(characterList){ character ->
-            findNavController().navigate(R.id.action_favoriteFragment_to_detailFragment,
+        favoriteAdapter = CharacterAdapter(characterList, ::goToDetails, ::deleteCharacter)
+    }
+
+    private fun deleteCharacter(character: Results) {
+        viewModel.deleteCharacter(character)
+        Toast.makeText(requireContext(), getString(R.string.toast_remove), Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    private fun goToDetails(character: Results) {
+        findNavController().navigate(R.id.action_favoriteFragment_to_detailFragment,
             Bundle().apply {
                 putSerializable("CHARACTER", character)
             })
-        }
     }
 
     private fun setRecycler(characterList: List<Results>){

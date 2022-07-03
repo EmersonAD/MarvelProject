@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -13,9 +13,9 @@
         android:scaleType="centerCrop"
         android:src="@drawable/ghostridder"
         app:layout_constraintDimensionRatio="11:9"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="0dp"
@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="@id/imgPoster"
         app:layout_constraintEnd_toEndOf="@id/imgPoster"
         app:layout_constraintStart_toStartOf="@id/imgPoster"
-        app:layout_constraintTop_toTopOf="@id/imgPoster"/>
+        app:layout_constraintTop_toTopOf="@id/imgPoster" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardDetail"
@@ -43,13 +43,13 @@
             android:id="@+id/imgDetail"
             android:layout_width="160dp"
             android:layout_height="220dp"
-            android:scaleType="centerCrop"
             android:layout_margin="2dp"
             android:background="@drawable/ghostridder"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.cardview.widget.CardView>
 
@@ -72,16 +72,16 @@
         android:id="@+id/txtDescriptionDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_margin="20dp"
-        android:text="@string/description_details"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:maxLines="5"
         android:textColor="@color/white"
         android:textSize="14sp"
-        android:maxLines="5"
-        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTitleDetails" />
+        app:layout_constraintTop_toBottomOf="@id/txtTitleDetails"
+        tools:text="@tools:sample/lorem/random" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabDetails"

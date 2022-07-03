@@ -13,4 +13,5 @@
     <string name="verify_internet">Verifique sua internet e tente novamente!</string>
     <string name="connection_error">Erro de conexão</string>
     <string name="dialog_confirm">Confirmar</string>
+    <string name="toast_remove">Removed from favorites</string>
 </resources>
