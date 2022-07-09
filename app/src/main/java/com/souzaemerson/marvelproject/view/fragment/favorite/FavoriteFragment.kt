@@ -16,6 +16,7 @@ import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.FragmentFavoriteBinding
+import com.souzaemerson.marvelproject.util.ConfirmDialog
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.fragment.detail.viewmodel.DetailViewModel
 import com.souzaemerson.marvelproject.view.fragment.favorite.viewmodel.FavoriteViewModel
@@ -66,9 +67,12 @@ class FavoriteFragment : Fragment(){
     }
 
     private fun deleteCharacter(character: Results) {
-        viewModel.deleteCharacter(character)
-        Toast.makeText(requireContext(), getString(R.string.toast_remove), Toast.LENGTH_SHORT)
-            .show()
+        ConfirmDialog("Confirmação",
+            "Tem certeza que gostaria de deletar este personagem").apply {
+            setListener {
+                viewModel.deleteCharacter(character)
+            }
+        }.show(parentFragmentManager, "Dialog")
     }
 
     private fun goToDetails(character: Results) {
