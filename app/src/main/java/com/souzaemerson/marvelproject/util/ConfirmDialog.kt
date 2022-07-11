@@ -8,7 +8,9 @@ import com.souzaemerson.marvelproject.R
 
 class ConfirmDialog(
     private val title: String,
-    private val message: String
+    private val message: String,
+    private val textYes: String,
+    private val textNo: String
 ) : DialogFragment() {
 
     private var yesListener: (() -> Unit)? = null
@@ -19,12 +21,12 @@ class ConfirmDialog(
             .setTitle(title)
             .setMessage(message)
             .setCancelable(false)
-            .setPositiveButton("Sim"){ _, _ ->
+            .setPositiveButton(textYes){ _, _ ->
                 yesListener?.let {
                     it()
                 }
             }
-            .setNegativeButton("Não"){ dialogInterface, _ ->
+            .setNegativeButton(textNo){ dialogInterface, _ ->
                 dialogInterface.cancel()
             }
             .create()

@@ -14,4 +14,11 @@
     <string name="connection_error">Erro de conexão</string>
     <string name="dialog_confirm">Confirmar</string>
     <string name="toast_remove">Removed from favorites</string>
+    <string name="conection_error">Erro de conexão!</string>
+    <string name="verifiry_your_internet">Verifique sua internet e tente novamente!</string>
+    <string name="try_again">Tentar novamente</string>
+    <string name="negative_no">Não</string>
+    <string name="confirmation">Confirmação</string>
+    <string name="message_connection">Tem certeza que gostaria de deletar este personagem</string>
+    <string name="delete">Deletar</string>
 </resources>

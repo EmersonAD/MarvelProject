@@ -1,15 +1,12 @@
 package com.souzaemerson.marvelproject.view.fragment.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
-import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
 import com.souzaemerson.marvelproject.data.db.CharacterDAO
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
@@ -18,13 +15,11 @@ import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.FragmentFavoriteBinding
 import com.souzaemerson.marvelproject.util.ConfirmDialog
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
-import com.souzaemerson.marvelproject.view.fragment.detail.viewmodel.DetailViewModel
 import com.souzaemerson.marvelproject.view.fragment.favorite.viewmodel.FavoriteViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class FavoriteFragment : Fragment(){
+class FavoriteFragment : Fragment() {
     lateinit var viewModel: FavoriteViewModel
     lateinit var repository: DatabaseRepository
     private val dao: CharacterDAO by lazy {
@@ -51,10 +46,10 @@ class FavoriteFragment : Fragment(){
         observeVMEvents()
     }
 
-    private fun observeVMEvents(){
-        viewModel.getCharacters().observe(viewLifecycleOwner){ results ->
-            when{
-                results.isNotEmpty() ->{
+    private fun observeVMEvents() {
+        viewModel.getCharacters().observe(viewLifecycleOwner) { results ->
+            when {
+                results.isNotEmpty() -> {
                     Timber.tag("LISTARESULTADO").i(results.toString())
                     setRecycler(results)
                 }
@@ -62,13 +57,17 @@ class FavoriteFragment : Fragment(){
         }
     }
 
-    private fun setAdapter(characterList: List<Results>){
+    private fun setAdapter(characterList: List<Results>) {
         favoriteAdapter = CharacterAdapter(characterList, ::goToDetails, ::deleteCharacter)
     }
 
     private fun deleteCharacter(character: Results) {
-        ConfirmDialog("Confirmação",
-            "Tem certeza que gostaria de deletar este personagem").apply {
+        ConfirmDialog(
+            getString(R.string.confirmation),
+            getString(R.string.message_connection),
+            getString(R.string.delete),
+            getString(R.string.negative_no)
+        ).apply {
             setListener {
                 viewModel.deleteCharacter(character)
             }
@@ -82,7 +81,7 @@ class FavoriteFragment : Fragment(){
             })
     }
 
-    private fun setRecycler(characterList: List<Results>){
+    private fun setRecycler(characterList: List<Results>) {
         setAdapter(characterList)
         binding.rvFavorite.apply {
             adapter = favoriteAdapter

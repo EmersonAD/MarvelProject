@@ -3,7 +3,7 @@ package com.souzaemerson.marvelproject.view.fragment.home
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -49,27 +49,33 @@ class HomeFragment : BaseFragment() {
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
 
-        binding.includeToolbar.findCharacter.addTextChangedListener { inputText ->
-            inputText?.let {
-                searchCharacter(it.toString())
-            }
-        }
         checkConnection()
         observeVMEvents()
+    }
+
+    private fun search(menu: Menu) {
+        val search = menu.findItem(R.id.search)
+        val searchView = search.actionView as SearchView
+        searchView.queryHint = "Pesquisar"
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean = false
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                when (newText) {
+                    "" -> getCharacters()
+                    else -> searchCharacter(newText.toString())
+                }
+                return false
+            }
+
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar, menu)
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.search -> {
-                binding.includeToolbar.findCharacter.visibility = View.VISIBLE
-            }
-        }
-        return super.onOptionsItemSelected(item)
+        search(menu)
     }
 
     private fun setupToolbar() {
@@ -83,7 +89,16 @@ class HomeFragment : BaseFragment() {
         if (hasInternet(context)) {
             getCharacters()
         } else {
-            ConfirmDialog("Erro de conexão!", "Verifique sua internet e tente novamente!")
+            ConfirmDialog(
+                getString(R.string.conection_error),
+                getString(R.string.verifiry_your_internet),
+                getString(R.string.try_again),
+                getString(R.string.negative_no)
+            ).apply {
+                setListener {
+                    checkConnection()
+                }
+            }
                 .show(parentFragmentManager, "Connection")
         }
     }
