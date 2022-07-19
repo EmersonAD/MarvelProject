@@ -19,13 +19,13 @@ class HomeViewModel(
     private val _search = MutableLiveData<State<CharacterResponse>>()
     val search: LiveData<State<CharacterResponse>> = _search
 
-    fun getCharacters(apikey: String, hash: String, ts: Long) {
+    fun getCharacters(apikey: String, hash: String, ts: Long, limit: Int, offset: Int) {
         viewModelScope.launch {
             try {
                 _response.value = State.loading(true)
 
                 val response = withContext(ioDispatcher) {
-                    repository.getCharacters(apikey, hash, ts)
+                    repository.getCharacters(apikey, hash, ts, limit, offset)
                 }
                 _response.value = State.loading(false)
                 _response.value = State.success(response)

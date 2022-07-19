@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.souzaemerson.marvelproject.data.model.CharacterResponse
 
 class CharactersRepositoryMock : CharacterRepository {
-    override suspend fun getCharacters(apikey: String, hash: String, ts: Long): CharacterResponse =
+    override suspend fun getCharacters(apikey: String, hash: String, ts: Long, limit: Int, offset: Int): CharacterResponse =
         mockCharacter()
 
     override suspend fun searchCharacter(

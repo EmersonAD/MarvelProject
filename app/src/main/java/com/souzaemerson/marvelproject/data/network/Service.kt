@@ -10,7 +10,9 @@ interface Service {
     suspend fun getCharacters(
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-        @Query("ts") ts: Long
+        @Query("ts") ts: Long,
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): CharacterResponse
 
     @GET("/v1/public/characters")

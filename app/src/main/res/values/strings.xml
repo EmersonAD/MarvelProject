@@ -21,4 +21,6 @@
     <string name="confirmation">Confirmação</string>
     <string name="message_connection">Tem certeza que gostaria de deletar este personagem</string>
     <string name="delete">Deletar</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>
