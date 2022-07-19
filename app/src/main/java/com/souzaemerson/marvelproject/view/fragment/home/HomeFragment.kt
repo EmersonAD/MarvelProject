@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.BaseFragment
 import com.souzaemerson.marvelproject.core.Status
@@ -31,6 +30,7 @@ class HomeFragment : BaseFragment() {
 
     lateinit var binding: FragmentHomeBinding
     private lateinit var characterAdapter: CharacterAdapter
+    private var offsetCharacters: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,15 +60,17 @@ class HomeFragment : BaseFragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = false
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 when (newText) {
-                    "" -> getCharacters()
-                    else -> searchCharacter(newText.toString())
+                    "" -> {
+                        getCharacters(offset = offsetCharacters)
+                    }
+                    else -> {
+                        searchCharacter(newText.toString())
+                    }
                 }
                 return false
             }
-
         })
     }
 
@@ -76,6 +78,26 @@ class HomeFragment : BaseFragment() {
         inflater.inflate(R.menu.toolbar, menu)
         super.onCreateOptionsMenu(menu, inflater)
         search(menu)
+        paginationSetup(menu)
+    }
+
+    private fun paginationSetup(menu: Menu) {
+        val next = menu.findItem(R.id.next_page)
+        next.setOnMenuItemClickListener {
+            if (offsetCharacters >= 0) {
+                offsetCharacters += 50
+                getCharacters(offset = offsetCharacters)
+            }
+            return@setOnMenuItemClickListener false
+        }
+        val previous = menu.findItem(R.id.previous_page)
+        previous.setOnMenuItemClickListener {
+            if (offsetCharacters >= 50) {
+                offsetCharacters -= 50
+                getCharacters(offset = offsetCharacters)
+            }
+            return@setOnMenuItemClickListener false
+        }
     }
 
     private fun setupToolbar() {
@@ -83,7 +105,6 @@ class HomeFragment : BaseFragment() {
         (activity as AppCompatActivity).setSupportActionBar(binding.includeToolbar.toolbarLayout)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
     }
-
 
     override fun checkConnection() {
         if (hasInternet(context)) {
@@ -103,9 +124,9 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun getCharacters() {
+    private fun getCharacters(limit: Int = 50, offset: Int = 0) {
         val ts = ts()
-        viewModel.getCharacters(apikey(), hash(ts), ts.toLong())
+        viewModel.getCharacters(apikey(), hash(ts), ts.toLong(), limit, offset)
     }
 
     private fun searchCharacter(nameStart: String) {
@@ -124,10 +145,6 @@ class HomeFragment : BaseFragment() {
                     }
                 }
                 Status.ERROR -> {
-                    val snack =
-                        Snackbar.make(binding.container, "Not found", Snackbar.LENGTH_INDEFINITE)
-                    snack.setAction("Confirmar") {}
-                    snack.show()
                     Timber.tag("Error").i(it.error)
                 }
                 Status.LOADING -> {

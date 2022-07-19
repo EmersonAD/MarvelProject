@@ -22,7 +22,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/marvel_font"
             android:maxLines="1"
-            android:textSize="38sp"
+            android:textSize="24sp"
             android:textStyle="bold"/>
 
     </androidx.appcompat.widget.Toolbar>
