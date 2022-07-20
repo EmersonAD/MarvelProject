@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.souzaemerson.marvelproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".CustomApp"
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -17,18 +16,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewMarvelTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name="com.souzaemerson.marvelproject.view.home.activity.HomeActivity"
+            android:name=".view.login.register.activity.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.login.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-    </application>
 
+        <activity
+            android:name="com.souzaemerson.marvelproject.view.home.activity.HomeActivity"
+            android:exported="false" />
+    </application>
 
 </manifest>

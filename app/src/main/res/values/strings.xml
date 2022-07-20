@@ -23,4 +23,24 @@
     <string name="delete">Deletar</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
+    <string name="username_hint">Usuário</string>
+    <string name="password_hint">Senha</string>
+    <string name="button_login">LOGIN</string>
+    <string name="create_account">CRIE SUA CONTA</string>
+    <string name="full_name">Nome completo</string>
+    <string name="email_text">Email</string>
+    <string name="confirm_email">Confirme o email</string>
+    <string name="next_button">Próximo</string>
+    <string name="back_button">VOLTAR</string>
+    <string name="defina_sua_senha">Defina sua senha</string>
+    <string name="password">Senha</string>
+    <string name="confirm_your_password">Confirme sua senha</string>
+    <string name="back">voltar</string>
+    <string name="choose_your_photo">ESCOLHA SUA FOTO</string>
+    <string name="choose_later">Definir mais tarde</string>
+    <string name="confirm_bottom">CONFIRMAR</string>
+    <string name="imagem_no_card_view">Imagem no card view</string>
+    <string name="welcome">Seja bem-vindo(A)</string>
+    <string name="go_to_home">Ir para a página inicial</string>
+    <string name="Logo">Logo Imagem</string>
 </resources>

@@ -9,8 +9,8 @@ import com.souzaemerson.marvelproject.R
 class ConfirmDialog(
     private val title: String,
     private val message: String,
-    private val textYes: String,
-    private val textNo: String
+    private val textYes: String = "Sim",
+    private val textNo: String = "Não"
 ) : DialogFragment() {
 
     private var yesListener: (() -> Unit)? = null

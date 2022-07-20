@@ -27,7 +27,6 @@ import timber.log.Timber
 class HomeFragment : BaseFragment() {
     lateinit var viewModel: HomeViewModel
     lateinit var repository: CharacterRepository
-
     lateinit var binding: FragmentHomeBinding
     private lateinit var characterAdapter: CharacterAdapter
     private var offsetCharacters: Int = 0
@@ -49,6 +48,7 @@ class HomeFragment : BaseFragment() {
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
 
+        paginationSetup()
         checkConnection()
         observeVMEvents()
     }
@@ -78,25 +78,20 @@ class HomeFragment : BaseFragment() {
         inflater.inflate(R.menu.toolbar, menu)
         super.onCreateOptionsMenu(menu, inflater)
         search(menu)
-        paginationSetup(menu)
     }
 
-    private fun paginationSetup(menu: Menu) {
-        val next = menu.findItem(R.id.next_page)
-        next.setOnMenuItemClickListener {
+    private fun paginationSetup() {
+        binding.fabItemNext.setOnClickListener {
             if (offsetCharacters >= 0) {
                 offsetCharacters += 50
                 getCharacters(offset = offsetCharacters)
             }
-            return@setOnMenuItemClickListener false
         }
-        val previous = menu.findItem(R.id.previous_page)
-        previous.setOnMenuItemClickListener {
+        binding.fabItemPrevious.setOnClickListener {
             if (offsetCharacters >= 50) {
                 offsetCharacters -= 50
                 getCharacters(offset = offsetCharacters)
             }
-            return@setOnMenuItemClickListener false
         }
     }
 
@@ -119,8 +114,7 @@ class HomeFragment : BaseFragment() {
                 setListener {
                     checkConnection()
                 }
-            }
-                .show(parentFragmentManager, "Connection")
+            }.show(parentFragmentManager, "Connection")
         }
     }
 
