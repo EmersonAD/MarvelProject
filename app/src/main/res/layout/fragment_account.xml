@@ -42,21 +42,14 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/full_name_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white"
+            style="@style/Theme.MarvelProject.FormatTextInput"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/create_account_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/full_name_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
+                style="@style/Theme.MarvelProject.FormatEditText"
                 android:hint="@string/full_name"
                 android:textAllCaps="true" />
 
@@ -64,22 +57,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            style="@style/Theme.MarvelProject.FormatTextInput"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="@id/full_name_layout"
             app:layout_constraintStart_toStartOf="@id/full_name_layout"
             app:layout_constraintTop_toBottomOf="@id/full_name_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
+                style="@style/Theme.MarvelProject.FormatEditText"
                 android:hint="@string/email_text"
                 android:textAllCaps="true" />
 
@@ -87,22 +73,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_confirmation_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            style="@style/Theme.MarvelProject.FormatTextInput"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="@id/email_layout"
             app:layout_constraintStart_toStartOf="@id/email_layout"
             app:layout_constraintTop_toBottomOf="@id/email_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_confirmation_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
+                style="@style/Theme.MarvelProject.FormatEditText"
                 android:hint="@string/confirm_email"
                 android:textAllCaps="true" />
 

@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
@@ -29,48 +30,41 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_username_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            style="@style/Theme.MarvelProject.FormatTextInput"
             app:endIconMode="clear_text"
-            app:boxStrokeErrorColor="#00FFFFFF"
-            app:startIconDrawable="@drawable/ic_baseline_person_24"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white">
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_username_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
+                style="@style/Theme.MarvelProject.FormatEditText"
                 android:hint="@string/username_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_password_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
-            android:layout_marginStart="32dp"
+            style="@style/Theme.MarvelProject.FormatTextInput"
+            android:layout_marginTop="16dp"
             app:endIconMode="password_toggle"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white">
+            app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_password_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
+                style="@style/Theme.MarvelProject.FormatEditText"
                 android:hint="@string/password_hint"
                 android:inputType="textPassword" />
-
         </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/login_register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:textSize="12sp"
+            android:text="@string/create_your_account"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"
@@ -78,14 +72,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="180dp"
         android:backgroundTint="#DA0910"
         android:elevation="4dp"
         android:text="@string/button_login"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:textAllCaps="true"
+        android:layout_marginBottom="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MarvelProject.Button.Cut"
         app:strokeColor="@color/black"

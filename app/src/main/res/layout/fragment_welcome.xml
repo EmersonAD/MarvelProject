@@ -7,7 +7,7 @@
     android:background="@drawable/background_gradient"
     tools:context=".view.login.register.fragment.welcome.WelcomeFragment">
 
-    <com.google.android.material.textview.MaterialTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/welcome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
