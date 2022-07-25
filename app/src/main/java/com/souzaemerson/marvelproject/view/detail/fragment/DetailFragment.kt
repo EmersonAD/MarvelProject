@@ -1,4 +1,4 @@
-package com.souzaemerson.marvelproject.view.fragment.detail
+package com.souzaemerson.marvelproject.view.detail.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
-import com.souzaemerson.marvelproject.view.fragment.detail.viewmodel.DetailViewModel
+import com.souzaemerson.marvelproject.view.detail.viewmodel.DetailViewModel
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 

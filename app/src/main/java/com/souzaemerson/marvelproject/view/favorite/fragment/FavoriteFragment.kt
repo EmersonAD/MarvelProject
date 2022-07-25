@@ -1,4 +1,4 @@
-package com.souzaemerson.marvelproject.view.fragment.favorite
+package com.souzaemerson.marvelproject.view.favorite.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.FragmentFavoriteBinding
 import com.souzaemerson.marvelproject.util.ConfirmDialog
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
-import com.souzaemerson.marvelproject.view.fragment.favorite.viewmodel.FavoriteViewModel
+import com.souzaemerson.marvelproject.view.favorite.viewmodel.FavoriteViewModel
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 

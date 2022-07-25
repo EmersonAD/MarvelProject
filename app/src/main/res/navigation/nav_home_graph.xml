@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.souzaemerson.marvelproject.view.fragment.home.HomeFragment"
+        android:name="com.souzaemerson.marvelproject.view.home.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -15,12 +15,12 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.souzaemerson.marvelproject.view.fragment.detail.DetailFragment"
+        android:name="com.souzaemerson.marvelproject.view.detail.fragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/character_details" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.souzaemerson.marvelproject.view.fragment.favorite.FavoriteFragment"
+        android:name="com.souzaemerson.marvelproject.view.favorite.fragment.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <action

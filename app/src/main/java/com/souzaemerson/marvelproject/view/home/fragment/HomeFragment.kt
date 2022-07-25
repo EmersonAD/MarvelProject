@@ -1,4 +1,4 @@
-package com.souzaemerson.marvelproject.view.fragment.home
+package com.souzaemerson.marvelproject.view.home.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -20,7 +20,7 @@ import com.souzaemerson.marvelproject.util.apikey
 import com.souzaemerson.marvelproject.util.hash
 import com.souzaemerson.marvelproject.util.ts
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
-import com.souzaemerson.marvelproject.view.fragment.home.viewmodel.HomeViewModel
+import com.souzaemerson.marvelproject.view.home.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 

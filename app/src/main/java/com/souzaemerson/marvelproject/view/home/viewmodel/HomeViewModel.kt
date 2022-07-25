@@ -1,4 +1,4 @@
-package com.souzaemerson.marvelproject.view.fragment.home.viewmodel
+package com.souzaemerson.marvelproject.view.home.viewmodel
 
 import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.core.State
