@@ -44,4 +44,9 @@
     <string name="go_to_home">Ir para a página inicial</string>
     <string name="Logo">Logo Imagem</string>
     <string name="create_your_account">Não tem uma conta? Registre-se</string>
+    <string name="invalid_email">Email inválido</string>
+    <string name="invalid_password">Senha inválida</string>
+    <string name="required_field">Campo obrigatório</string>
+    <string name="small_password">Senha deve possuir 8 caracteres</string>
+
 </resources>

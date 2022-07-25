@@ -1,4 +1,4 @@
-package com.souzaemerson.marvelproject.view.login.register.fragment.password
+package com.souzaemerson.marvelproject.view.register.fragment.password
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context=".view.login.register.fragment.photo.PhotoFragment">
+    tools:context=".view.register.fragment.photo.PhotoFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/register_pick_your_photo"
