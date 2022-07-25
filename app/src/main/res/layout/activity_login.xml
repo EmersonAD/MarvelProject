@@ -61,27 +61,25 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:textSize="12sp"
             android:text="@string/create_your_account"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <com.souzaemerson.marvelproject.util.LoadingButton
         android:id="@+id/login_button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#DA0910"
-        android:elevation="4dp"
-        android:text="@string/button_login"
-        android:textAllCaps="true"
         android:layout_marginBottom="180dp"
+        android:backgroundTint="#DA0910"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MarvelProject.Button.Cut"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        app:text="@string/button_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

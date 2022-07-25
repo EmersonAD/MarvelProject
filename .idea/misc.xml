@@ -22,7 +22,7 @@
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/shape_bg.xml" value="0.1685" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/shape_item.xml" value="0.1685" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_home.xml" value="0.30085470085470084" />
-        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_register.xml" value="0.19054652880354506" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/bottom_layout.xml" value="0.2" />
@@ -35,6 +35,7 @@
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_password.xml" value="0.25" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_photo.xml" value="0.22" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_welcome.xml" value="0.25" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/loading_button.xml" value="0.29444444444444445" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/toolbar_layout.xml" value="0.25" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/menu/bottom_navigator.xml" value="0.17" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/menu/toolbar.xml" value="0.33" />
