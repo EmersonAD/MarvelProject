@@ -2,21 +2,35 @@ package com.souzaemerson.marvelproject.view.login.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.souzaemerson.marvelproject.core.Status
+import com.souzaemerson.marvelproject.data.db.AppDatabase
+import com.souzaemerson.marvelproject.data.repository.login.LoginRepository
+import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryImpl
+import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryMock
 import com.souzaemerson.marvelproject.databinding.ActivityLoginBinding
 import com.souzaemerson.marvelproject.util.Watcher
 import com.souzaemerson.marvelproject.util.setError
+import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.login.viewmodel.LoginViewModel
+import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
+    private lateinit var repository: LoginRepository
+    private val dao by lazy {
+        AppDatabase.getDb(applicationContext).characterDao()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel = LoginViewModel()
+        repository = LoginRepositoryImpl(dao)
+        viewModel = LoginViewModel.LoginViewModelProvideFactory(repository)
+            .create(LoginViewModel::class.java)
+
         observeVMEvents()
 
         binding.run {
@@ -45,6 +59,19 @@ class LoginActivity : AppCompatActivity() {
         }
         viewModel.loading.observe(this) {
             binding.loginButton.progress(it)
+        }
+        viewModel.user.observe(this) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { user ->
+                        toast("Sucesso ao logar ${user.name}")
+                    }
+                }
+                Status.ERROR -> {
+                    toast("Erro tentar logar-se")
+                }
+                Status.LOADING -> {}
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ package com.souzaemerson.marvelproject.view.home.viewmodel
 import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.core.State
 import com.souzaemerson.marvelproject.data.model.CharacterResponse
-import com.souzaemerson.marvelproject.data.repository.CharacterRepository
+import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

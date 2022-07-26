@@ -12,8 +12,8 @@ import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.core.hasInternet
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.network.ApiService
-import com.souzaemerson.marvelproject.data.repository.CharacterRepository
-import com.souzaemerson.marvelproject.data.repository.CharactersRepositoryImpl
+import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
+import com.souzaemerson.marvelproject.data.repository.character.CharactersRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.FragmentHomeBinding
 import com.souzaemerson.marvelproject.util.ConfirmDialog
 import com.souzaemerson.marvelproject.util.apikey

@@ -1,15 +1,20 @@
 package com.souzaemerson.marvelproject.view.login.viewmodel
 
 import android.util.Patterns
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.R
+import com.souzaemerson.marvelproject.core.State
+import com.souzaemerson.marvelproject.data.model.User
+import com.souzaemerson.marvelproject.data.repository.login.LoginRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(
+    private val repository: LoginRepository
+) : ViewModel() {
+
+    private val _user = MutableLiveData<State<User>>()
+    val user: LiveData<State<User>> = _user
 
     private val _loginFieldErrorResId = MutableLiveData<Int?>()
     val loginFieldErrorResId: LiveData<Int?> = _loginFieldErrorResId
@@ -31,8 +36,16 @@ class LoginViewModel : ViewModel() {
 
             if (isValid) {
                 _loading.value = true
-                delay(3000)
-                _loading.value = false
+                try {
+                    delay(3000)
+                    repository.login(email, password).let { user ->
+                        _user.value = State.success(user)
+                        _loading.value = false
+                    }
+                } catch (e: Exception) {
+                    _loading.value = false
+                    _user.value = State.error(e)
+                }
             }
         }
 
@@ -54,4 +67,15 @@ class LoginViewModel : ViewModel() {
             }
             else -> null
         }
+
+    class LoginViewModelProvideFactory(
+        private val repository: LoginRepository
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+                return LoginViewModel(repository) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel Class")
+        }
+    }
 }

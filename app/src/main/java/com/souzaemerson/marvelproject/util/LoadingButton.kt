@@ -35,7 +35,6 @@ class LoadingButton @JvmOverloads constructor(
                     visibility = View.GONE
                 }
             }
-
             attributes.recycle()
         }
     }

@@ -1,4 +1,4 @@
-package com.souzaemerson.marvelproject.data.repository
+package com.souzaemerson.marvelproject.data.repository.character
 
 import com.souzaemerson.marvelproject.data.model.CharacterResponse
 

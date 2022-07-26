@@ -30,6 +30,19 @@ class Converters {
     }
 
     @TypeConverter
+    fun fromListResults(lists: List<Results>): String =
+        Gson().toJson(lists)
+
+    @TypeConverter
+    fun toListResults(string: String?): List<Results?>? {
+        if (string == null) {
+            return Collections.emptyList()
+        }
+        val listType: Type = object : TypeToken<List<Results?>?>() {}.type
+        return Gson().fromJson<List<Results?>>(string, listType)
+    }
+
+    @TypeConverter
     fun fromComics(comics: Comics): String =
         Gson().toJson(comics)
 
