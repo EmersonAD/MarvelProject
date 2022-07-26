@@ -1,16 +1,10 @@
 package com.souzaemerson.marvelproject.view.login.activity
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStore
 import com.souzaemerson.marvelproject.databinding.ActivityLoginBinding
 import com.souzaemerson.marvelproject.util.Watcher
 import com.souzaemerson.marvelproject.util.setError
-import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.login.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {

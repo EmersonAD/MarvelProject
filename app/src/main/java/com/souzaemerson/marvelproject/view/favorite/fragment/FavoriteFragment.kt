@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
@@ -16,6 +15,8 @@ import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.databinding.FragmentFavoriteBinding
 import com.souzaemerson.marvelproject.util.ConfirmDialog
+import com.souzaemerson.marvelproject.util.timberInfo
+import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.favorite.viewmodel.FavoriteViewModel
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +34,7 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
@@ -64,15 +65,13 @@ class FavoriteFragment : Fragment() {
             when (state.status) {
                 Status.SUCCESS -> {
                     state.data?.let {
-                        Toast.makeText(requireContext(), "Personagem deletado", Toast.LENGTH_SHORT)
-                            .show()
+                        toast("Personagem deletado")
                     }
                 }
                 Status.ERROR -> {
-
+                    timberInfo("error", state.error.toString())
                 }
                 Status.LOADING -> {
-
                 }
             }
         }

@@ -1,13 +1,14 @@
 package com.souzaemerson.marvelproject
 
 import android.app.Application
+import com.github.clans.fab.BuildConfig
 import timber.log.Timber
 
-class CustomApp: Application() {
+class CustomApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
     }
