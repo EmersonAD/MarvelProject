@@ -2,6 +2,7 @@ package com.souzaemerson.marvelproject.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "user_table")
 data class User(
@@ -9,6 +10,5 @@ data class User(
     val email: String,
     val name: String,
     val password: String,
-    val photo: Int?,
-    val favorites: List<Results>
-)
+    val photo: Int?
+): Serializable

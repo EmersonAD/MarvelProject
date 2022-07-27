@@ -12,10 +12,10 @@ object MockDatabase {
     }
 
     private fun mockUser() = user.run {
-        add(User("hectorfortuna@gmail.com", "Hector", "12345678", null, listOf()))
-        add(User("emersonsoares@gmail.com", "Emerson", "12345678", null, listOf()))
-        add(User("amanddaluz@gmail.com", "Amanda", "12345678", null, listOf()))
-        add(User("fernanda@gmail.com", "Fernanda", "12345678", null, listOf()))
+        add(User("hectorfortuna@gmail.com", "Hector", "12345678", null))
+        add(User("emersonsoares@gmail.com", "Emerson", "12345678", null))
+        add(User("amanddaluz@gmail.com", "Amanda", "12345678", null))
+        add(User("fernanda@gmail.com", "Fernanda", "12345678", null))
     }
 
     @Throws(Throwable::class)

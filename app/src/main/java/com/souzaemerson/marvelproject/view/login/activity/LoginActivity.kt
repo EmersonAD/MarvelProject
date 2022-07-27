@@ -1,9 +1,11 @@
 package com.souzaemerson.marvelproject.view.login.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
+import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.repository.login.LoginRepository
 import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryImpl
 import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryMock
@@ -11,8 +13,8 @@ import com.souzaemerson.marvelproject.databinding.ActivityLoginBinding
 import com.souzaemerson.marvelproject.util.Watcher
 import com.souzaemerson.marvelproject.util.setError
 import com.souzaemerson.marvelproject.util.toast
+import com.souzaemerson.marvelproject.view.home.activity.HomeActivity
 import com.souzaemerson.marvelproject.view.login.viewmodel.LoginViewModel
-import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -27,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        repository = LoginRepositoryImpl(dao)
+        repository = LoginRepositoryMock()
         viewModel = LoginViewModel.LoginViewModelProvideFactory(repository)
             .create(LoginViewModel::class.java)
 
@@ -64,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { user ->
-                        toast("Sucesso ao logar ${user.name}")
+                        goTo(user, HomeActivity::class.java)
                     }
                 }
                 Status.ERROR -> {
@@ -73,5 +75,14 @@ class LoginActivity : AppCompatActivity() {
                 Status.LOADING -> {}
             }
         }
+    }
+
+    private fun <T> goTo(user: User?, clazz: Class<T>) {
+        val intent = Intent(this@LoginActivity, clazz)
+        user?.let {
+            intent.putExtra("USER", user)
+        }
+        startActivity(intent)
+        finish()
     }
 }

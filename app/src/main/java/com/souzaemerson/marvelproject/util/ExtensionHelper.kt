@@ -19,11 +19,3 @@ fun Fragment.toast(message: String) {
 fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
-
-fun Fragment.timberInfo(tag: String?, message: String) {
-    Timber.tag(tag).i(message)
-}
-
-fun Fragment.timberError(tag: String?, message: String) {
-    Timber.tag(tag).e(message)
-}

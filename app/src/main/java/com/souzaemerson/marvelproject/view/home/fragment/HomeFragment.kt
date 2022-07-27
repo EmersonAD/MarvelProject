@@ -1,5 +1,7 @@
 package com.souzaemerson.marvelproject.view.home.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -11,14 +13,12 @@ import com.souzaemerson.marvelproject.core.BaseFragment
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.core.hasInternet
 import com.souzaemerson.marvelproject.data.model.Results
+import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.network.ApiService
 import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
 import com.souzaemerson.marvelproject.data.repository.character.CharactersRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.FragmentHomeBinding
-import com.souzaemerson.marvelproject.util.ConfirmDialog
-import com.souzaemerson.marvelproject.util.apikey
-import com.souzaemerson.marvelproject.util.hash
-import com.souzaemerson.marvelproject.util.ts
+import com.souzaemerson.marvelproject.util.*
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.home.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +30,7 @@ class HomeFragment : BaseFragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var characterAdapter: CharacterAdapter
     private var offsetCharacters: Int = 0
+    private lateinit var user: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +48,10 @@ class HomeFragment : BaseFragment() {
         repository = CharactersRepositoryImpl(ApiService.service)
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
+
+        activity?.let {
+            user = it.intent.getSerializableExtra("USER") as User
+        }
 
         paginationSetup()
         checkConnection()
