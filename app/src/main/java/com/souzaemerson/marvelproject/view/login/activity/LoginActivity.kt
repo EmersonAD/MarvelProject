@@ -35,14 +35,18 @@ class LoginActivity : AppCompatActivity() {
         observeVMEvents()
 
         binding.run {
-            loginButton.setOnClickListener {
-                val email = binding.loginUsernameEdit.text.toString()
-                val password = binding.loginPasswordEdit.text.toString()
-
-                viewModel.login(email, password)
-            }
+            onClickLoginButton()
             loginUsernameEdit.addTextChangedListener(watcher)
             loginPasswordEdit.addTextChangedListener(watcher)
+        }
+    }
+
+    private fun onClickLoginButton() {
+        binding.loginButton.setOnClickListener {
+            val email = binding.loginUsernameEdit.text.toString()
+            val password = binding.loginPasswordEdit.text.toString()
+
+            viewModel.login(email, password)
         }
     }
 
@@ -69,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
                 Status.ERROR -> {
-                    toast("Erro tentar logar-se")
+                    toast("Erro ao fazer o login!")
                 }
                 Status.LOADING -> {}
             }
