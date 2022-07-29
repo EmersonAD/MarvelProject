@@ -1,7 +1,5 @@
 package com.souzaemerson.marvelproject.view.home.fragment
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +16,10 @@ import com.souzaemerson.marvelproject.data.network.ApiService
 import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
 import com.souzaemerson.marvelproject.data.repository.character.CharactersRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.FragmentHomeBinding
-import com.souzaemerson.marvelproject.util.*
+import com.souzaemerson.marvelproject.util.ConfirmDialog
+import com.souzaemerson.marvelproject.util.apikey
+import com.souzaemerson.marvelproject.util.hash
+import com.souzaemerson.marvelproject.util.ts
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.home.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers

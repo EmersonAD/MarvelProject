@@ -10,7 +10,6 @@ import com.souzaemerson.marvelproject.data.model.Results
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class FavoriteViewModel(
     private val repository: DatabaseRepository,
@@ -21,7 +20,7 @@ class FavoriteViewModel(
     val delete: LiveData<State<Boolean>>
     get() = _delete
 
-    fun getCharacters() = repository.getAllCharacters()
+    fun getCharacters(email: String) = repository.getAllCharactersByUser(email)
 
     fun deleteCharacter(result: Results) = viewModelScope.launch {
         try {

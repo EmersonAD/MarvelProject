@@ -16,6 +16,7 @@ object MockDatabase {
         add(User("emersonsoares@gmail.com", "Emerson", "12345678", null))
         add(User("amanddaluz@gmail.com", "Amanda", "12345678", null))
         add(User("fernanda@gmail.com", "Fernanda", "12345678", null))
+        add(User("lieberson@gmail.com", "Lieberson", "12345678", null))
     }
 
     @Throws(Throwable::class)

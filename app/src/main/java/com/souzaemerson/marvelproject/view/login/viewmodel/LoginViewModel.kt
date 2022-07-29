@@ -38,7 +38,7 @@ class LoginViewModel(
                 _loading.value = true
                 try {
                     delay(3000)
-                    repository.login(email, password).let { user ->
+                    repository.userLogin(email, password).let { user ->
                         _user.value = State.success(user)
                         _loading.value = false
                     }

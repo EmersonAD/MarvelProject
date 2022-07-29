@@ -36,11 +36,11 @@ class DetailViewModel(
         }
     }
 
-    fun verifySavedCharacter(characterId: Long) {
+    fun verifySavedCharacter(characterId: Long, email: String) {
         viewModelScope.launch {
             try {
                 val result = withContext(ioDispatcher) {
-                    databaseRepository.getFavoriteCharacter(characterId)
+                    databaseRepository.getFavoriteCharacterByUser(characterId, email)
                 }
                 _verifyCharacter.value = State.success(result != null)
 

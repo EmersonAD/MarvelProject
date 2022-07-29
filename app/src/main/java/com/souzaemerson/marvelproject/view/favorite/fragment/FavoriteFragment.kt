@@ -9,13 +9,13 @@ import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
-import com.souzaemerson.marvelproject.data.db.CharacterDAO
+import com.souzaemerson.marvelproject.data.db.daos.CharacterDAO
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Results
+import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.FragmentFavoriteBinding
 import com.souzaemerson.marvelproject.util.ConfirmDialog
-import com.souzaemerson.marvelproject.util.timberInfo
 import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.favorite.viewmodel.FavoriteViewModel
@@ -29,6 +29,7 @@ class FavoriteFragment : Fragment() {
         AppDatabase.getDb(requireContext()).characterDao()
     }
     private lateinit var binding: FragmentFavoriteBinding
+    private lateinit var user: User
     private lateinit var favoriteAdapter: CharacterAdapter
 
     override fun onCreateView(
@@ -44,13 +45,16 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         repository = DatabaseRepositoryImpl(dao)
+        activity?.let {
+            user = it.intent.getSerializableExtra("USER") as User
+        }
         viewModel = FavoriteViewModel(repository, Dispatchers.IO)
 
         observeVMEvents()
     }
 
     private fun observeVMEvents() {
-        viewModel.getCharacters().observe(viewLifecycleOwner) { results ->
+        viewModel.getCharacters(user.email).observe(viewLifecycleOwner) { results ->
             when {
                 results.isNotEmpty() -> {
                     Timber.tag("LISTARESULTADO").i(results.toString())
@@ -69,7 +73,7 @@ class FavoriteFragment : Fragment() {
                     }
                 }
                 Status.ERROR -> {
-                    timberInfo("error", state.error.toString())
+//                    timberInfo("error", state.error.toString())
                 }
                 Status.LOADING -> {
                 }

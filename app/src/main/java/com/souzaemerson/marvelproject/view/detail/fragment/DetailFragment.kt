@@ -10,13 +10,12 @@ import com.bumptech.glide.Glide
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
-import com.souzaemerson.marvelproject.data.db.CharacterDAO
+import com.souzaemerson.marvelproject.data.db.daos.CharacterDAO
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Results
+import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
-import com.souzaemerson.marvelproject.util.timberError
-import com.souzaemerson.marvelproject.util.timberInfo
 import com.souzaemerson.marvelproject.view.detail.viewmodel.DetailViewModel
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
@@ -25,6 +24,7 @@ class DetailFragment : Fragment() {
     lateinit var viewModel: DetailViewModel
     lateinit var repository: DatabaseRepository
     private var checkCharacter: Boolean = false
+    private lateinit var user: User
     private val dao: CharacterDAO by lazy {
         AppDatabase.getDb(requireContext()).characterDao()
     }
@@ -46,7 +46,11 @@ class DetailFragment : Fragment() {
         viewModel = DetailViewModel.DetailViewModelProviderFactory(repository, Dispatchers.IO)
             .create(DetailViewModel::class.java)
 
-        viewModel.verifySavedCharacter(character.id)
+        activity?.let {
+            user = it.intent.getSerializableExtra("USER") as User
+        }
+
+        viewModel.verifySavedCharacter(character.id, user.email)
 
         binding.run {
             setImage(imgDetail)
@@ -60,7 +64,8 @@ class DetailFragment : Fragment() {
                     fabDetails.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                     checkCharacter = false
                 } else {
-                    viewModel.insertCharacters(character)
+                    val favorite = character.copy(email = user.email)
+                    viewModel.insertCharacters(favorite)
                     fabDetails.setImageResource(R.drawable.ic_favorite)
                     checkCharacter = true
                 }
@@ -74,7 +79,7 @@ class DetailFragment : Fragment() {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { response ->
-                        timberInfo("Success", response.toString())
+                        Timber.tag("Success").i(response.toString())
                     }
                 }
                 Status.ERROR -> {
