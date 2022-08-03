@@ -12,6 +12,7 @@ import com.souzaemerson.marvelproject.data.db.AppDatabase
 import com.souzaemerson.marvelproject.data.db.daos.CharacterDAO
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
+import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.FragmentFavoriteBinding
@@ -19,6 +20,7 @@ import com.souzaemerson.marvelproject.util.ConfirmDialog
 import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.favorite.viewmodel.FavoriteViewModel
+import converterToResult
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
@@ -46,7 +48,7 @@ class FavoriteFragment : Fragment() {
 
         repository = DatabaseRepositoryImpl(dao)
         activity?.let {
-            user = it.intent.getSerializableExtra("USER") as User
+            user = it.intent.getParcelableExtra<User>("USER") as User
         }
         viewModel = FavoriteViewModel(repository, Dispatchers.IO)
 
@@ -54,14 +56,14 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun observeVMEvents() {
-        viewModel.getCharacters(user.email).observe(viewLifecycleOwner) { results ->
+        viewModel.getCharacters(user.email).observe(viewLifecycleOwner) {
             when {
-                results.isNotEmpty() -> {
-                    Timber.tag("LISTARESULTADO").i(results.toString())
-                    setRecycler(results)
+                it.isNotEmpty() -> {
+                    Timber.tag("LISTARESULT").i(it.toString())
+                    setRecycler(converterToResult(it))
                 }
                 else -> {
-                    setRecycler(results)
+                    setRecycler(converterToResult(it))
                 }
             }
         }
@@ -85,21 +87,21 @@ class FavoriteFragment : Fragment() {
         favoriteAdapter = CharacterAdapter(characterList, ::goToDetails, ::deleteCharacter)
     }
 
-    private fun deleteCharacter(character: Results) {
+    private fun deleteCharacter(favorites: Favorites) {
         ConfirmDialog(
             getString(R.string.confirmation),
             getString(R.string.message_connection)
         ).apply {
             setListener {
-                viewModel.deleteCharacter(character)
+                viewModel.deleteCharacter(favorites)
             }
         }.show(parentFragmentManager, "Dialog")
     }
 
-    private fun goToDetails(character: Results) {
+    private fun goToDetails(favorites: Favorites) {
         findNavController().navigate(R.id.action_favoriteFragment_to_detailFragment,
             Bundle().apply {
-                putSerializable("CHARACTER", character)
+                putParcelable("FAVORITE", favorites)
             })
     }
 

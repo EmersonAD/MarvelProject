@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context=".view.register.fragment.photo.PhotoFragment">
+    tools:context=".view.register.photo.fragment.PhotoFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/register_pick_your_photo"
@@ -28,7 +28,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         app:cardCornerRadius="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/photo_button_confirm"
+        app:layout_constraintBottom_toTopOf="@+id/photo_button_back"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_cardview" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/photo_button_confirm"
+        android:id="@+id/photo_button_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -69,7 +69,7 @@
         android:elevation="4dp"
         android:text="@string/back_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/photo_button_back"
+        app:layout_constraintEnd_toStartOf="@+id/photo_button_confirm"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
         app:strokeWidth="1dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/photo_button_back"
+        android:id="@+id/photo_button_confirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -86,11 +86,11 @@
         android:elevation="4dp"
         android:text="@string/confirm_bottom"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="@+id/photo_button_confirm"
+        app:layout_constraintBottom_toBottomOf="@+id/photo_button_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/photo_button_confirm"
-        app:layout_constraintTop_toTopOf="@+id/photo_button_confirm"
+        app:layout_constraintStart_toEndOf="@+id/photo_button_back"
+        app:layout_constraintTop_toTopOf="@+id/photo_button_back"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MarvelProject.Button.Cut"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp" />

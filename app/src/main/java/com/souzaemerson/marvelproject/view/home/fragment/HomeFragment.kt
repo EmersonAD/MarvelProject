@@ -31,7 +31,6 @@ class HomeFragment : BaseFragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var characterAdapter: CharacterAdapter
     private var offsetCharacters: Int = 0
-    private lateinit var user: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +48,6 @@ class HomeFragment : BaseFragment() {
         repository = CharactersRepositoryImpl(ApiService.service)
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
-
-        activity?.let {
-            user = it.intent.getSerializableExtra("USER") as User
-        }
 
         paginationSetup()
         checkConnection()
@@ -173,11 +168,11 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setAdapter(characterList: List<Results>) {
-        characterAdapter = CharacterAdapter(characterList, { character ->
-            Timber.tag("Click").i(character.name)
+        characterAdapter = CharacterAdapter(characterList, {
+            Timber.tag("Click").i(it.name)
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment,
                 Bundle().apply {
-                    putSerializable("CHARACTER", character)
+                        putParcelable("FAVORITE", it)
                 })
         })
     }

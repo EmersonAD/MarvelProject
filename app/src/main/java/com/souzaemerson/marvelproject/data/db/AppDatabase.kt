@@ -9,14 +9,17 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.souzaemerson.marvelproject.data.db.converters.Converters
 import com.souzaemerson.marvelproject.data.db.daos.CharacterDAO
+import com.souzaemerson.marvelproject.data.db.daos.UserDAO
+import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.model.User
 
-@Database(entities = [Results::class, User::class], version = 1, exportSchema = false)
+@Database(entities = [Favorites::class, User::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun characterDao(): CharacterDAO
+    abstract fun userDao(): UserDAO
 
     companion object {
         @Volatile

@@ -7,20 +7,21 @@ import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.repository.login.LoginRepository
-import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryMock
+import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.ActivityLoginBinding
 import com.souzaemerson.marvelproject.util.Watcher
 import com.souzaemerson.marvelproject.util.setError
 import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.home.activity.HomeActivity
 import com.souzaemerson.marvelproject.view.login.viewmodel.LoginViewModel
+import com.souzaemerson.marvelproject.view.register.activity.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
     private lateinit var repository: LoginRepository
     private val dao by lazy {
-        AppDatabase.getDb(applicationContext).characterDao()
+        AppDatabase.getDb(applicationContext).userDao()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        repository = LoginRepositoryMock()
+        repository = LoginRepositoryImpl(dao)
         viewModel = LoginViewModel.LoginViewModelProvideFactory(repository)
             .create(LoginViewModel::class.java)
 
@@ -36,17 +37,15 @@ class LoginActivity : AppCompatActivity() {
 
         binding.run {
             onClickLoginButton()
+            goToRegisterActivity()
             loginUsernameEdit.addTextChangedListener(watcher)
             loginPasswordEdit.addTextChangedListener(watcher)
         }
     }
 
-    private fun onClickLoginButton() {
-        binding.loginButton.setOnClickListener {
-            val email = binding.loginUsernameEdit.text.toString()
-            val password = binding.loginPasswordEdit.text.toString()
-
-            viewModel.login(email, password)
+    private fun ActivityLoginBinding.goToRegisterActivity() {
+        loginRegisterButton.setOnClickListener {
+            goTo(null, RegisterActivity::class.java)
         }
     }
 
@@ -77,6 +76,15 @@ class LoginActivity : AppCompatActivity() {
                 }
                 Status.LOADING -> {}
             }
+        }
+    }
+
+    private fun ActivityLoginBinding.onClickLoginButton() {
+        loginButton.setOnClickListener {
+            val email = binding.loginUsernameEdit.text.toString()
+            val password = binding.loginPasswordEdit.text.toString()
+
+            viewModel.login(email, password)
         }
     }
 
