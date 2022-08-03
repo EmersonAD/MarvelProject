@@ -1,6 +1,7 @@
 package com.souzaemerson.marvelproject.view.favorite.fragment
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ import com.souzaemerson.marvelproject.util.ConfirmDialog
 import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.favorite.viewmodel.FavoriteViewModel
-import converterToResult
+import com.souzaemerson.marvelproject.data.model.converterToResult
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
@@ -46,10 +47,10 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        repository = DatabaseRepositoryImpl(dao)
         activity?.let {
             user = it.intent.getParcelableExtra<User>("USER") as User
         }
+        repository = DatabaseRepositoryImpl(dao)
         viewModel = FavoriteViewModel(repository, Dispatchers.IO)
 
         observeVMEvents()

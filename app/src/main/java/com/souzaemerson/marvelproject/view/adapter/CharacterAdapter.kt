@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.Results
+import com.souzaemerson.marvelproject.data.model.converterToFavorite
 import com.souzaemerson.marvelproject.databinding.CharacterItemBinding
-import converterToFavorite
 
 class CharacterAdapter(
     private val results: List<Results>,

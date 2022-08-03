@@ -53,7 +53,7 @@ class PhotoFragment : Fragment() {
 
         clickToChoosePhoto()
         insertUserOnDatabase()
-        createUserWithoutPhoto()
+//        createUserWithoutPhoto()
         observeVMEvents()
     }
 

@@ -16,10 +16,7 @@ import com.souzaemerson.marvelproject.data.network.ApiService
 import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
 import com.souzaemerson.marvelproject.data.repository.character.CharactersRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.FragmentHomeBinding
-import com.souzaemerson.marvelproject.util.ConfirmDialog
-import com.souzaemerson.marvelproject.util.apikey
-import com.souzaemerson.marvelproject.util.hash
-import com.souzaemerson.marvelproject.util.ts
+import com.souzaemerson.marvelproject.util.*
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.home.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,6 +26,7 @@ class HomeFragment : BaseFragment() {
     lateinit var viewModel: HomeViewModel
     lateinit var repository: CharacterRepository
     lateinit var binding: FragmentHomeBinding
+    private lateinit var user: User
     private lateinit var characterAdapter: CharacterAdapter
     private var offsetCharacters: Int = 0
 
@@ -48,6 +46,11 @@ class HomeFragment : BaseFragment() {
         repository = CharactersRepositoryImpl(ApiService.service)
         viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
             .create(HomeViewModel::class.java)
+
+        activity?.let {
+           user = it.intent?.getParcelableExtra<User>("USER") as User
+        }
+        toast(user.email)
 
         paginationSetup()
         checkConnection()

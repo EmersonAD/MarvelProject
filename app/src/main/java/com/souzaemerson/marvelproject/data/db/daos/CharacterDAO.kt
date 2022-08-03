@@ -3,8 +3,6 @@ package com.souzaemerson.marvelproject.data.db.daos
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.souzaemerson.marvelproject.data.model.Favorites
-import com.souzaemerson.marvelproject.data.model.Results
-import com.souzaemerson.marvelproject.data.model.User
 
 @Dao
 interface CharacterDAO {

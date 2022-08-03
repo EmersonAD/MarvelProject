@@ -44,7 +44,7 @@
         android:backgroundTint="#DA0910"
         android:textAllCaps="true"
         android:elevation="4dp"
-        android:text="@string/go_to_home"
+        android:text="@string/go_to_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

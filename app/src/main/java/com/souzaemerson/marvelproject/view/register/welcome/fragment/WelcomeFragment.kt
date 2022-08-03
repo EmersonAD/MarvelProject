@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.FragmentWelcomeBinding
 import com.souzaemerson.marvelproject.view.home.activity.HomeActivity
+import com.souzaemerson.marvelproject.view.login.activity.LoginActivity
 
 class WelcomeFragment : Fragment() {
     private lateinit var binding: FragmentWelcomeBinding
@@ -32,12 +34,13 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun welcomeWith(username: String){
-        binding.welcome.text = "SEJA BEM VINDO(A), $username!"
+        val welcomeName = "SEJA BEM VINDO(A), $username!"
+        binding.welcome.text = welcomeName
     }
 
     private fun goToHomePage() {
         binding.welcomeButton.setOnClickListener {
-            val intent = Intent(context, HomeActivity::class.java)
+            val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
     }

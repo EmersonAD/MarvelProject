@@ -8,6 +8,7 @@ import com.souzaemerson.marvelproject.data.db.AppDatabase
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.repository.login.LoginRepository
 import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryImpl
+import com.souzaemerson.marvelproject.data.repository.login.LoginRepositoryMock
 import com.souzaemerson.marvelproject.databinding.ActivityLoginBinding
 import com.souzaemerson.marvelproject.util.Watcher
 import com.souzaemerson.marvelproject.util.setError

@@ -4,11 +4,9 @@ import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.core.State
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.model.Favorites
-import com.souzaemerson.marvelproject.data.model.Results
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class DetailViewModel(
     private val databaseRepository: DatabaseRepository,
@@ -25,15 +23,26 @@ class DetailViewModel(
     val delete: LiveData<State<Boolean>>
         get() = _delete
 
-
-    fun insertFavorite(favorites: Favorites) {
+    fun insertCharacters(result: Favorites) {
         viewModelScope.launch {
             try {
-                databaseRepository.insertFavorite(favorites)
-            }catch (e: Exception){
-                Timber.tag("ERRO").i(e)
+                withContext(ioDispatcher) {
+                    databaseRepository.insertCharacter(result)
+                }
+                _response.value = State.success(true)
+            } catch (throwable: Throwable) {
+                _response.value = State.error(throwable)
             }
+        }
+    }
 
+    fun insertFavorite(favorite: Favorites) {
+        viewModelScope.launch {
+            try {
+                databaseRepository.insertFavorite(favorite)
+            } catch (e: Exception) {
+                //Timber
+            }
         }
     }
 
@@ -51,11 +60,11 @@ class DetailViewModel(
         }
     }
 
-    fun deleteCharacter(favorites: Favorites) = viewModelScope.launch {
+    fun deleteCharacter(favorite: Favorites) = viewModelScope.launch {
         try {
             _delete.value = State.loading(true)
             withContext(ioDispatcher) {
-                databaseRepository.deleteCharacter(favorites)
+                databaseRepository.deleteCharacter(favorite)
             }
             _delete.value = State.loading(false)
             _delete.value = State.success(true)

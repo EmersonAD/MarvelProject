@@ -1,5 +1,4 @@
-import com.souzaemerson.marvelproject.data.model.Favorites
-import com.souzaemerson.marvelproject.data.model.Results
+package com.souzaemerson.marvelproject.data.model
 
 fun converterToFavorite(results: Results) = Favorites(
     id = results.id,
