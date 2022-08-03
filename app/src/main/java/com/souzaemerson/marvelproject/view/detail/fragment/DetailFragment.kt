@@ -63,7 +63,8 @@ class DetailFragment : Fragment() {
             fabDetails.setOnClickListener {
 
                 checkCharacter = if (checkCharacter) {
-                    viewModel.deleteCharacter(favorite)
+                    val newFavorite = favorite.copy(email = user.email)
+                    viewModel.deleteCharacter(newFavorite)
                     fabDetails.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                     false
                 } else {
