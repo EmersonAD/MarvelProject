@@ -64,6 +64,7 @@ class FavoriteFragment : Fragment() {
                     setRecycler(converterToResult(it))
                 }
                 else -> {
+                    binding.favoriteContainer.setBackgroundResource(R.drawable.no_bg)
                     setRecycler(converterToResult(it))
                 }
             }
@@ -76,7 +77,7 @@ class FavoriteFragment : Fragment() {
                     }
                 }
                 Status.ERROR -> {
-//                    timberInfo("error", state.error.toString())
+                    Timber.tag("error").i(state.error.toString())
                 }
                 Status.LOADING -> {
                 }

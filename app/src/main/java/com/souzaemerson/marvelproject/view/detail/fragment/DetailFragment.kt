@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
@@ -16,6 +18,12 @@ import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
+import com.souzaemerson.marvelproject.util.Data
+import com.souzaemerson.marvelproject.util.Image
+import com.souzaemerson.marvelproject.view.detail.adapter.CarouselAdapter
+import com.souzaemerson.marvelproject.view.detail.decoration.BoundsOffsetDecoration
+import com.souzaemerson.marvelproject.view.detail.decoration.LinearHorizontalSpacingDecoration
+import com.souzaemerson.marvelproject.view.detail.decoration.ProminentLayoutManager
 import com.souzaemerson.marvelproject.view.detail.viewmodel.DetailViewModel
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
@@ -25,6 +33,8 @@ class DetailFragment : Fragment() {
     lateinit var viewModel: DetailViewModel
     lateinit var repository: DatabaseRepository
     private var checkCharacter: Boolean = false
+    private lateinit var snapHelper: SnapHelper
+    private lateinit var carouselAdapter: CarouselAdapter
     private val dao: CharacterDAO by lazy {
         AppDatabase.getDb(requireContext()).characterDao()
     }
@@ -43,39 +53,51 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         favorite = arguments?.getParcelable<Favorites>("FAVORITE") as Favorites
         repository = DatabaseRepositoryImpl(dao)
         viewModel = DetailViewModel.DetailViewModelProviderFactory(repository, Dispatchers.IO)
             .create(DetailViewModel::class.java)
 
-        activity?.let {
-            user = it.intent.getParcelableExtra<User>("USER") as User
-        }
+        getUserByIntent()
 
+        val images: List<Image> = Data.images
+        setRecycler(images)
         viewModel.verifySavedCharacter(favorite.id, user.email)
 
         binding.run {
             setImage(imgDetail)
-            setImage(imgPoster)
 
             txtTitleDetails.text = favorite.name
             txtDescriptionDetails.text = favorite.description
-            fabDetails.setOnClickListener {
 
-                checkCharacter = if (checkCharacter) {
-                    val newFavorite = favorite.copy(email = user.email)
-                    viewModel.deleteCharacter(newFavorite)
-                    fabDetails.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                    false
-                } else {
-                    val copyFavorite = favorite.copy(email = user.email)
-                    viewModel.insertFavorite(copyFavorite)
-                    fabDetails.setImageResource(R.drawable.ic_favorite)
-                    true
-                }
+            setFavoriteCharacter()
+        }
+
+        observeVMEvents()
+    }
+
+    private fun getUserByIntent() {
+        activity?.let {
+            user = it.intent.getParcelableExtra<User>("USER") as User
+        }
+    }
+
+    private fun CharacterDetailsBinding.setFavoriteCharacter() {
+        fabDetails.setOnClickListener {
+
+            checkCharacter = if (checkCharacter) {
+                val newFavorite = favorite.copy(email = user.email)
+                viewModel.deleteCharacter(newFavorite)
+                fabDetails.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                false
+            } else {
+                val copyFavorite = favorite.copy(email = user.email)
+                viewModel.insertFavorite(copyFavorite)
+                fabDetails.setImageResource(R.drawable.ic_favorite)
+                true
             }
         }
-        observeVMEvents()
     }
 
     private fun observeVMEvents() {
@@ -108,6 +130,26 @@ class DetailFragment : Fragment() {
                 Status.LOADING -> {}
             }
         }
+    }
+
+    private fun setAdapter(list: List<Image>) {
+        carouselAdapter = CarouselAdapter(list)
+    }
+
+    private fun setRecycler(list: List<Image>) {
+        setAdapter(list)
+        snapHelper = PagerSnapHelper()
+
+        binding.imgPoster.apply {
+            adapter = carouselAdapter
+            layoutManager = ProminentLayoutManager(context)
+            setItemViewCacheSize(4)
+            val spacing = resources.getDimensionPixelSize(R.dimen.carousel_spacing)
+            addItemDecoration(LinearHorizontalSpacingDecoration(spacing))
+            addItemDecoration(BoundsOffsetDecoration())
+        }
+
+        snapHelper.attachToRecyclerView(binding.imgPoster)
     }
 
     private fun setImage(image: AppCompatImageView) {

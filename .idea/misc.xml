@@ -11,6 +11,7 @@
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/background_photo.xml" value="0.1745" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/bottom_item_selected.xml" value="0.1895" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/edt_background.xml" value="0.1575" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/gradient_carousel.xml" value="0.1" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/ic_baseline_arrow_circle_down_24.xml" value="0.304" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/ic_baseline_compare_arrows_24.xml" value="0.194" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2695" />
@@ -36,6 +37,7 @@
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_password.xml" value="0.25" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_photo.xml" value="0.22" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_welcome.xml" value="0.25" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/item_carousel.xml" value="0.33" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/loading_button.xml" value="0.29444444444444445" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/toolbar_layout.xml" value="0.25" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/menu/bottom_navigator.xml" value="0.17" />

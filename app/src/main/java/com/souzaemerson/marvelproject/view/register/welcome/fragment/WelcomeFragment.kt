@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.FragmentWelcomeBinding
-import com.souzaemerson.marvelproject.view.home.activity.HomeActivity
 import com.souzaemerson.marvelproject.view.login.activity.LoginActivity
 
 class WelcomeFragment : Fragment() {
@@ -21,7 +19,6 @@ class WelcomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWelcomeBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -30,7 +27,7 @@ class WelcomeFragment : Fragment() {
         user = arguments?.getParcelable<User>("REGISTER_USER") as User
 
         welcomeWith(user.name)
-        goToHomePage()
+        goToLoginPage()
     }
 
     private fun welcomeWith(username: String){
@@ -38,7 +35,7 @@ class WelcomeFragment : Fragment() {
         binding.welcome.text = welcomeName
     }
 
-    private fun goToHomePage() {
+    private fun goToLoginPage() {
         binding.welcomeButton.setOnClickListener {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
