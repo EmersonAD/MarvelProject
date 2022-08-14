@@ -1,9 +1,8 @@
 package com.souzaemerson.marvelproject.data.db.repository
 
 import androidx.lifecycle.LiveData
-import com.souzaemerson.marvelproject.data.db.daos.CharacterDAO
+import com.souzaemerson.marvelproject.data.db.dao.CharacterDAO
 import com.souzaemerson.marvelproject.data.model.Favorites
-import com.souzaemerson.marvelproject.data.model.Results
 
 class DatabaseRepositoryImpl(private val dao: CharacterDAO) : DatabaseRepository {
     override suspend fun insertCharacter(result: Favorites) =

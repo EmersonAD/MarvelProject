@@ -3,6 +3,7 @@ package com.souzaemerson.marvelproject.view.login.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
 import com.souzaemerson.marvelproject.data.model.User
@@ -39,6 +40,8 @@ class LoginActivity : AppCompatActivity() {
         binding.run {
             onClickLoginButton()
             goToRegisterActivity()
+            loginUsernameEdit.setText("j@gmail.com")
+            loginPasswordEdit.setText("11111111")
             loginUsernameEdit.addTextChangedListener(watcher)
             loginPasswordEdit.addTextChangedListener(watcher)
         }

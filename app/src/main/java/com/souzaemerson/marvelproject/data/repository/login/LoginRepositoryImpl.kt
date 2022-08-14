@@ -1,6 +1,6 @@
 package com.souzaemerson.marvelproject.data.repository.login
 
-import com.souzaemerson.marvelproject.data.db.daos.UserDAO
+import com.souzaemerson.marvelproject.data.db.dao.UserDAO
 import com.souzaemerson.marvelproject.data.model.User
 
 class LoginRepositoryImpl(private val dao: UserDAO): LoginRepository {

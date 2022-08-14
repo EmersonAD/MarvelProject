@@ -4,17 +4,27 @@ import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.core.State
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.model.Favorites
+import com.souzaemerson.marvelproject.data.model.comic.ComicResponse
+import com.souzaemerson.marvelproject.data.repository.category.CategoryRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class DetailViewModel(
     private val databaseRepository: DatabaseRepository,
-    private val ioDispatcher: CoroutineDispatcher
+    private val ioDispatcher: CoroutineDispatcher,
+    private var categoryRepository: CategoryRepository
 ) : ViewModel() {
 
     private val _response = MutableLiveData<State<Boolean>>()
     val response: LiveData<State<Boolean>> = _response
+
+    private val _comicsResponse = MutableLiveData<State<ComicResponse>>()
+    val comicsResponse: LiveData<State<ComicResponse>> = _comicsResponse
+
+    private val _seriesResponse = MutableLiveData<State<ComicResponse>>()
+    val seriesResponse: LiveData<State<ComicResponse>> = _seriesResponse
 
     private val _verifyCharacter = MutableLiveData<State<Boolean>>()
     val verifyCharacter: LiveData<State<Boolean>> = _verifyCharacter
@@ -23,15 +33,37 @@ class DetailViewModel(
     val delete: LiveData<State<Boolean>>
         get() = _delete
 
-    fun insertCharacters(result: Favorites) {
+
+    fun getCategory(apikey: String, hash: String, ts: Long, id: Long) {
         viewModelScope.launch {
             try {
+                _comicsResponse.value = State.loading(true)
                 withContext(ioDispatcher) {
-                    databaseRepository.insertCharacter(result)
+                    categoryRepository.getComics(apikey, hash, ts, id)
+                }.let {
+                    _comicsResponse.value = State.loading(false)
+                    _comicsResponse.value = State.success(it)
                 }
-                _response.value = State.success(true)
-            } catch (throwable: Throwable) {
-                _response.value = State.error(throwable)
+            } catch (e: Exception) {
+                Timber.tag("Error").e(e)
+                _comicsResponse.value = State.error(e)
+            }
+        }
+    }
+
+    fun getSeries(apikey: String, hash: String, ts: Long, id: Long) {
+        viewModelScope.launch {
+            try {
+                _seriesResponse.value = State.loading(true)
+                withContext(ioDispatcher) {
+                    categoryRepository.getSeries(apikey, hash, ts, id)
+                }.let {
+                    _seriesResponse.value = State.loading(false)
+                    _seriesResponse.value = State.success(it)
+                }
+            } catch (e: Exception) {
+                Timber.tag("Error").e(e)
+                _seriesResponse.value = State.error(e)
             }
         }
     }
@@ -76,11 +108,12 @@ class DetailViewModel(
 
     class DetailViewModelProviderFactory(
         private val repository: DatabaseRepository,
-        private val ioDispatcher: CoroutineDispatcher
+        private val ioDispatcher: CoroutineDispatcher,
+        private val categoryRepository: CategoryRepository
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-                return DetailViewModel(repository, ioDispatcher) as T
+                return DetailViewModel(repository, ioDispatcher, categoryRepository) as T
             }
             throw IllegalArgumentException("Unknown viewModel Class")
         }

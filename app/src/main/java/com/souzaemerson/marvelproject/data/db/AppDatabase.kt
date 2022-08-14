@@ -8,10 +8,9 @@ import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.souzaemerson.marvelproject.data.db.converters.Converters
-import com.souzaemerson.marvelproject.data.db.daos.CharacterDAO
-import com.souzaemerson.marvelproject.data.db.daos.UserDAO
+import com.souzaemerson.marvelproject.data.db.dao.CharacterDAO
+import com.souzaemerson.marvelproject.data.db.dao.UserDAO
 import com.souzaemerson.marvelproject.data.model.Favorites
-import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.model.User
 
 @Database(entities = [Favorites::class, User::class], version = 1, exportSchema = false)

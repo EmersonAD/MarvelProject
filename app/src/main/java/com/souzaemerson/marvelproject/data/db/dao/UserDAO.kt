@@ -1,4 +1,4 @@
-package com.souzaemerson.marvelproject.data.db.daos
+package com.souzaemerson.marvelproject.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -8,7 +8,7 @@ import kotlin.math.roundToInt
 internal class ProminentLayoutManager(
     context: Context,
     private val minScaleDistanceFactor: Float = 1.5f,
-    private val scaleDownBy: Float = 0.5f //TODO("ALTERAR PARA TESTAR DIMENSÕES")
+    private val scaleDownBy: Float = 0.5f
 ) : LinearLayoutManager(context, HORIZONTAL, false) {
 
     override fun onLayoutCompleted(state: RecyclerView.State?) =

@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
-import com.souzaemerson.marvelproject.data.db.daos.UserDAO
+import com.souzaemerson.marvelproject.data.db.dao.UserDAO
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.repository.register.RegisterRepository
 import com.souzaemerson.marvelproject.data.repository.register.RegisterRepositoryImpl

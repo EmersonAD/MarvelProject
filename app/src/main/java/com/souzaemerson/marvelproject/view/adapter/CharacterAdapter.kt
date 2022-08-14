@@ -13,8 +13,7 @@ class CharacterAdapter(
     private val results: List<Results>,
     private val itemClick: ((item: Favorites) -> Unit),
     private val longClick: ((item: Favorites) -> Unit)? = null
-) :
-    RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val view = LayoutInflater.from(parent.context)

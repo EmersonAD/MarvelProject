@@ -1,7 +1,6 @@
 package com.souzaemerson.marvelproject.view.favorite.fragment
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.data.db.AppDatabase
-import com.souzaemerson.marvelproject.data.db.daos.CharacterDAO
+import com.souzaemerson.marvelproject.data.db.dao.CharacterDAO
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Favorites
