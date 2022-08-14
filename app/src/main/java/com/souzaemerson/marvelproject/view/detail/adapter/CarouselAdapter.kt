@@ -1,12 +1,10 @@
 package com.souzaemerson.marvelproject.view.detail.adapter
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,13 +12,12 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.target.ViewTarget
 import com.souzaemerson.marvelproject.data.model.comic.Result
-import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
 import com.souzaemerson.marvelproject.databinding.ItemCarouselBinding
-import timber.log.Timber
 import kotlin.math.roundToInt
 
 class CarouselAdapter(
-    private val itemList: List<Result>
+    private val itemList: List<Result>,
+    private val click: (item: Result) -> Unit
 ) : RecyclerView.Adapter<CarouselAdapter.MyViewHolder>() {
 
     private var hasInitParentDimensions = false
@@ -41,7 +38,11 @@ class CarouselAdapter(
 
         holder.run {
             layoutParamsConfiguration(category)
-            scrollToItemClicked(position)
+            itemView.setOnClickListener {
+                val rv = itemView.parent as RecyclerView
+                rv.smoothScrollToCenteredPosition(position)
+                click.invoke(category)
+            }
         }
     }
 
@@ -88,10 +89,10 @@ class CarouselAdapter(
     private fun MyViewHolder.scrollToItemClicked(
         position: Int
     ) {
-        itemView.setOnClickListener {
-            val rv = itemView.parent as RecyclerView
-            rv.smoothScrollToCenteredPosition(position)
-        }
+//        itemView.setOnClickListener {
+//            val rv = itemView.parent as RecyclerView
+//            rv.smoothScrollToCenteredPosition(position)
+//        }
     }
 
     private fun RecyclerView.smoothScrollToCenteredPosition(position: Int) {

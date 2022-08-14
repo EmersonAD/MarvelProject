@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -25,7 +24,6 @@ import com.souzaemerson.marvelproject.data.repository.category.CategoryRepositor
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
 import com.souzaemerson.marvelproject.util.apikey
 import com.souzaemerson.marvelproject.util.hash
-import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.util.ts
 import com.souzaemerson.marvelproject.view.detail.adapter.CarouselAdapter
 import com.souzaemerson.marvelproject.view.detail.decoration.BoundsOffsetDecoration
@@ -109,12 +107,12 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun getCategory(id: Long){
+    private fun getCategory(id: Long) {
         val ts = ts()
         viewModel.getCategory(apikey(), hash(ts), ts.toLong(), id)
     }
 
-    private fun getSeries(id: Long){
+    private fun getSeries(id: Long) {
         val ts = ts()
         viewModel.getSeries(apikey(), hash(ts), ts.toLong(), id)
     }
@@ -178,7 +176,15 @@ class DetailFragment : Fragment() {
     }
 
     private fun setAdapter(list: List<Result>) {
-        carouselAdapter = CarouselAdapter(list)
+        carouselAdapter = CarouselAdapter(list) { item ->
+            binding.run {
+                Glide.with(this@DetailFragment)
+                    .load("${item.thumbnail.path}.${item.thumbnail.extension}")
+                    .into(imgDetail)
+                detailsTitle.text = item.title
+                detailsDescription.text = item.description
+            }
+        }
     }
 
     private fun setRecycler(list: List<Result>) {
@@ -199,7 +205,7 @@ class DetailFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.recyclerCategory)
     }
 
-    private fun setRecyclerSeries(list: List<Result>){
+    private fun setRecyclerSeries(list: List<Result>) {
         setAdapter(list)
         snapHelper = PagerSnapHelper()
 
