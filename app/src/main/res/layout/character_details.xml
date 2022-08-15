@@ -47,42 +47,42 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/shape_bg"
             android:padding="6dp"
-            android:text="Price: \n$ 20.00"
             android:textColor="@color/white"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/character_image"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:text="Price: \n$ 20.00" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/comics_pages"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/shape_bg"
             android:padding="6dp"
-            android:text="Pages:\n35"
             android:textColor="@color/white"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/comics_price"
-            app:layout_constraintTop_toBottomOf="@id/comics_price" />
+            app:layout_constraintTop_toBottomOf="@id/comics_price"
+            app:text="Pages:\n35" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/comics_on_sale_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/shape_bg"
             android:padding="6dp"
-            android:text="On sale date:\n12-31-2007"
             android:textColor="@color/white"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/comics_pages"
-            app:layout_constraintTop_toBottomOf="@id/comics_pages" />
+            app:layout_constraintTop_toBottomOf="@id/comics_pages"
+            app:text="On sale date:\n12-31-2007" />
 
         <TextView
             android:id="@+id/details_title"
@@ -126,8 +126,8 @@
             android:id="@+id/view_divider"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@color/red_700"
             app:layout_constraintEnd_toEndOf="parent"
@@ -159,13 +159,13 @@
             android:id="@+id/txt_comics"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/marvel_font"
-            android:textAlignment="center"
             android:letterSpacing="1"
             android:text="COMICS"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -190,8 +190,8 @@
             android:id="@+id/txt_series"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/marvel_font"
             android:letterSpacing="1"
@@ -207,8 +207,8 @@
             android:id="@+id/view_divider2"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@color/red_700"
             app:layout_constraintEnd_toEndOf="parent"
@@ -250,18 +250,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_divider2" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fabDetails"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="14dp"
             android:backgroundTint="@color/black"
             android:contentDescription="@null"
-            android:src="@drawable/ic_baseline_favorite_border_24"
+            android:gravity="center"
+            android:text="FAVORITAR"
             app:fabSize="normal"
+            app:icon="@drawable/ic_baseline_favorite_border_24"
             app:layout_constraintBottom_toTopOf="@id/details_title"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/character_image"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MarvelProject.Button.Cut"
+            app:strokeColor="@color/red_700"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_back_to_character"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="14dp"
+            android:backgroundTint="@color/black"
+            android:contentDescription="@null"
+            android:visibility="gone"
+            android:text="PERSONAGEM"
+            android:textSize="12sp"
+            app:fabSize="normal"
+            app:icon="@drawable/ic_baseline_keyboard_return_24"
+            app:layout_constraintBottom_toTopOf="@id/details_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/character_image"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MarvelProject.Button.Cut"
+            app:strokeColor="@color/red_700"
+            app:strokeWidth="2dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

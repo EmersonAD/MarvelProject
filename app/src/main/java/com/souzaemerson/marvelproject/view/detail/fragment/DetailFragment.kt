@@ -73,15 +73,17 @@ class DetailFragment : Fragment() {
         getSeries(id = favorite.id)
 
         binding.run {
-            setImage(imgDetail)
-
-            detailsTitle.text = favorite.name
-            detailsDescription.text = favorite.description
-
+            setCharacterScreen()
             setFavoriteCharacter()
         }
 
         observeVMEvents()
+    }
+
+    private fun CharacterDetailsBinding.setCharacterScreen() {
+        setImage(imgDetail)
+        detailsTitle.text = favorite.name
+        detailsDescription.text = favorite.description
     }
 
     private fun getUserByIntent() {
@@ -96,12 +98,14 @@ class DetailFragment : Fragment() {
             checkCharacter = if (checkCharacter) {
                 val newFavorite = favorite.copy(email = user.email)
                 viewModel.deleteCharacter(newFavorite)
-                fabDetails.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                fabDetails.setText(R.string.FAVORITAR_FAB)
+                fabDetails.setIconResource(R.drawable.ic_baseline_favorite_border_24)
                 false
             } else {
                 val copyFavorite = favorite.copy(email = user.email)
                 viewModel.insertFavorite(copyFavorite)
-                fabDetails.setImageResource(R.drawable.ic_favorite)
+                fabDetails.setText(R.string.FAVORITADO_FAB)
+                fabDetails.setIconResource(R.drawable.ic_favorite)
                 true
             }
         }
@@ -162,7 +166,8 @@ class DetailFragment : Fragment() {
                 Status.SUCCESS -> {
                     it.data?.let { exist ->
                         if (exist) {
-                            binding.fabDetails.setImageResource(R.drawable.ic_favorite)
+                            binding.fabDetails.setIconResource(R.drawable.ic_favorite)
+                            binding.fabDetails.setText(R.string.FAVORITADO_FAB)
                         }
                         checkCharacter = exist
                     }
@@ -176,14 +181,56 @@ class DetailFragment : Fragment() {
     }
 
     private fun setAdapter(list: List<Result>) {
-        carouselAdapter = CarouselAdapter(list) { item ->
+        carouselAdapter = CarouselAdapter(list){
             binding.run {
                 Glide.with(this@DetailFragment)
-                    .load("${item.thumbnail.path}.${item.thumbnail.extension}")
+                    .load("${it.thumbnail.path}.${it.thumbnail.extension}")
                     .into(imgDetail)
-                detailsTitle.text = item.title
-                detailsDescription.text = item.description
+                detailsTitle.text = it.title
+                detailsDescription.text = it.description
+
+                fabDetails.visibility = View.INVISIBLE
+                fabBackToCharacter.visibility = View.VISIBLE
+
+                backToCharacterButton()
+
+                val page = it.pageCount.toString()
+                val price = it.prices
+                val itemPrice = it.prices?.first()?.price
+
+                if(price.isNullOrEmpty() || itemPrice.toString() == "0.0"){
+                    comicsPrice.visibility = View.INVISIBLE
+                } else {
+                    comicsPrice.visibility = View.VISIBLE
+                    comicsPrice.text = "Price:\n$${it.prices.first().price}"
+                }
+
+                if(page.isNullOrEmpty() || page == "0"){
+                    comicsPages.visibility = View.INVISIBLE
+                } else {
+                    comicsPages.visibility = View.VISIBLE
+                    comicsPages.text = "Pages:\n${it.pageCount}"
+                }
+
+                if(it.dates.isNullOrEmpty()){
+                    comicsOnSaleDate.visibility = View.INVISIBLE
+                } else {
+                    comicsOnSaleDate.visibility = View.VISIBLE
+                    comicsOnSaleDate.text ="Release Date:\n${it.dates?.first()?.date?.substring(0,10)
+                        ?.replace("-", "/")}"
+                }
             }
+        }
+    }
+
+    private fun CharacterDetailsBinding.backToCharacterButton() {
+        fabBackToCharacter.setOnClickListener {
+            setCharacterScreen()
+            fabBackToCharacter.visibility = View.GONE
+            fabDetails.visibility = View.VISIBLE
+            comicsPrice.visibility = View.INVISIBLE
+            comicsPages.visibility = View.INVISIBLE
+            comicsOnSaleDate.visibility = View.INVISIBLE
         }
     }
 

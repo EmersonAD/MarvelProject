@@ -51,5 +51,7 @@
     <string name="email_confirmation">Emails são diferentes</string>
     <string name="different_password">Senhas não são iguais</string>
     <string name="invalid_name">Digite um nome válido</string>
+    <string name="FAVORITAR_FAB">FAVORITAR</string>
+    <string name="FAVORITADO_FAB">FAVORITADO</string>
 
 </resources>
