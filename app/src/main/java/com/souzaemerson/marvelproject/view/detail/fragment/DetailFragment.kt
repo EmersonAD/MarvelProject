@@ -24,8 +24,10 @@ import com.souzaemerson.marvelproject.data.repository.category.CategoryRepositor
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
 import com.souzaemerson.marvelproject.util.apikey
 import com.souzaemerson.marvelproject.util.hash
+import com.souzaemerson.marvelproject.util.setVisibilityAs
 import com.souzaemerson.marvelproject.util.ts
 import com.souzaemerson.marvelproject.view.detail.adapter.CarouselAdapter
+import com.souzaemerson.marvelproject.view.detail.adapter.ComicsAndSeriesFields
 import com.souzaemerson.marvelproject.view.detail.decoration.BoundsOffsetDecoration
 import com.souzaemerson.marvelproject.view.detail.decoration.LinearHorizontalSpacingDecoration
 import com.souzaemerson.marvelproject.view.detail.decoration.ProminentLayoutManager
@@ -78,47 +80,6 @@ class DetailFragment : Fragment() {
         }
 
         observeVMEvents()
-    }
-
-    private fun CharacterDetailsBinding.setCharacterScreen() {
-        setImage(imgDetail)
-        detailsTitle.text = favorite.name
-        detailsDescription.text = favorite.description
-    }
-
-    private fun getUserByIntent() {
-        activity?.let {
-            user = it.intent.getParcelableExtra<User>("USER") as User
-        }
-    }
-
-    private fun CharacterDetailsBinding.setFavoriteCharacter() {
-        fabDetails.setOnClickListener {
-
-            checkCharacter = if (checkCharacter) {
-                val newFavorite = favorite.copy(email = user.email)
-                viewModel.deleteCharacter(newFavorite)
-                fabDetails.setText(R.string.FAVORITAR_FAB)
-                fabDetails.setIconResource(R.drawable.ic_baseline_favorite_border_24)
-                false
-            } else {
-                val copyFavorite = favorite.copy(email = user.email)
-                viewModel.insertFavorite(copyFavorite)
-                fabDetails.setText(R.string.FAVORITADO_FAB)
-                fabDetails.setIconResource(R.drawable.ic_favorite)
-                true
-            }
-        }
-    }
-
-    private fun getCategory(id: Long) {
-        val ts = ts()
-        viewModel.getCategory(apikey(), hash(ts), ts.toLong(), id)
-    }
-
-    private fun getSeries(id: Long) {
-        val ts = ts()
-        viewModel.getSeries(apikey(), hash(ts), ts.toLong(), id)
     }
 
     private fun observeVMEvents() {
@@ -180,47 +141,80 @@ class DetailFragment : Fragment() {
         }
     }
 
+    private fun CharacterDetailsBinding.setCharacterScreen() {
+        setImage(imgDetail)
+        detailsTitle.text = favorite.name
+        detailsDescription.text = favorite.description
+    }
+
+    private fun getUserByIntent() {
+        activity?.let {
+            user = it.intent.getParcelableExtra<User>("USER") as User
+        }
+    }
+
+    private fun CharacterDetailsBinding.setFavoriteCharacter() {
+        fabDetails.setOnClickListener {
+
+            checkCharacter = if (checkCharacter) {
+                val newFavorite = favorite.copy(email = user.email)
+                viewModel.deleteCharacter(newFavorite)
+                fabDetails.setText(R.string.FAVORITAR_FAB)
+                fabDetails.setIconResource(R.drawable.ic_baseline_favorite_border_24)
+                false
+            } else {
+                val copyFavorite = favorite.copy(email = user.email)
+                viewModel.insertFavorite(copyFavorite)
+                fabDetails.setText(R.string.FAVORITADO_FAB)
+                fabDetails.setIconResource(R.drawable.ic_favorite)
+                true
+            }
+        }
+    }
+
+    private fun getCategory(id: Long) {
+        val ts = ts()
+        viewModel.getCategory(apikey(), hash(ts), ts.toLong(), id)
+    }
+
+    private fun getSeries(id: Long) {
+        val ts = ts()
+        viewModel.getSeries(apikey(), hash(ts), ts.toLong(), id)
+    }
+
     private fun setAdapter(list: List<Result>) {
         carouselAdapter = CarouselAdapter(list){
             binding.run {
-                Glide.with(this@DetailFragment)
-                    .load("${it.thumbnail.path}.${it.thumbnail.extension}")
-                    .into(imgDetail)
-                detailsTitle.text = it.title
-                detailsDescription.text = it.description
+                ComicsAndSeriesFields(it).run {
+                    setBaseFieldsOfScreen(it)
 
-                fabDetails.visibility = View.INVISIBLE
-                fabBackToCharacter.visibility = View.VISIBLE
+                    setVisibilityAs(fabDetails, View.INVISIBLE)
+                    setVisibilityAs(fabBackToCharacter, View.VISIBLE)
 
-                backToCharacterButton()
+                    backToCharacterButton()
 
-                val page = it.pageCount.toString()
-                val price = it.prices
-                val itemPrice = it.prices?.first()?.price
+                    val textPrices = "Price:\n$ ${it.prices?.first()?.price}"
+                    setPricesFields(comicsPrice, textPrices)
 
-                if(price.isNullOrEmpty() || itemPrice.toString() == "0.0"){
-                    comicsPrice.visibility = View.INVISIBLE
-                } else {
-                    comicsPrice.visibility = View.VISIBLE
-                    comicsPrice.text = "Price:\n$${it.prices.first().price}"
-                }
+                    val textPages = "Pages:\n${it.pageCount}"
+                    setPageFields(comicsPages, textPages)
 
-                if(page.isNullOrEmpty() || page == "0"){
-                    comicsPages.visibility = View.INVISIBLE
-                } else {
-                    comicsPages.visibility = View.VISIBLE
-                    comicsPages.text = "Pages:\n${it.pageCount}"
-                }
-
-                if(it.dates.isNullOrEmpty()){
-                    comicsOnSaleDate.visibility = View.INVISIBLE
-                } else {
-                    comicsOnSaleDate.visibility = View.VISIBLE
-                    comicsOnSaleDate.text ="Release Date:\n${it.dates?.first()?.date?.substring(0,10)
+                    val textOnSaleDate = "Release Date:\n${it.dates?.first()?.date?.substring(0,10)
                         ?.replace("-", "/")}"
+                    setOnSaleDateFields(comicsOnSaleDate, textOnSaleDate)
                 }
             }
         }
+    }
+
+    private fun CharacterDetailsBinding.setBaseFieldsOfScreen(
+        item: Result
+    ) {
+        Glide.with(this@DetailFragment)
+            .load("${item.thumbnail.path}.${item.thumbnail.extension}")
+            .into(imgDetail)
+        detailsTitle.text = item.title
+        detailsDescription.text = item.description
     }
 
     private fun CharacterDetailsBinding.backToCharacterButton() {

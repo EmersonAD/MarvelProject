@@ -1,11 +1,13 @@
 package com.souzaemerson.marvelproject.view.register.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.databinding.ActivityRegisterBinding
+import com.souzaemerson.marvelproject.view.login.activity.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -20,4 +22,11 @@ class RegisterActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_register_fragment) as NavHostFragment
         navController = navHostFragment.navController
     }
+
+    fun backToLoginStep(){
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

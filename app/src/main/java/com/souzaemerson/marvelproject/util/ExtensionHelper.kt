@@ -1,6 +1,7 @@
 package com.souzaemerson.marvelproject.util
 
 import android.content.Context
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
@@ -18,4 +19,8 @@ fun Fragment.toast(message: String) {
 
 fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun View.setVisibilityAs(mode: Int){
+    this.visibility = mode
 }

@@ -1,11 +1,15 @@
 package com.souzaemerson.marvelproject.view.detail.viewmodel
 
+import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.core.State
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.comic.ComicResponse
+import com.souzaemerson.marvelproject.data.model.comic.Result
 import com.souzaemerson.marvelproject.data.repository.category.CategoryRepository
+import com.souzaemerson.marvelproject.util.setVisibilityAs
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

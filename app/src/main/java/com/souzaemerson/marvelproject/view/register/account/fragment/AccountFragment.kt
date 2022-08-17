@@ -35,6 +35,7 @@ class AccountFragment : Fragment() {
 
         observeVMEvents()
         goToPasswordStep()
+        backToPreviousStep()
     }
 
     private fun goToPasswordStep() {
@@ -56,6 +57,12 @@ class AccountFragment : Fragment() {
             Bundle().apply {
                 putParcelable("REGISTER_USER", user)
             })
+    }
+
+    private fun backToPreviousStep(){
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun observeVMEvents() {

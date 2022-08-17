@@ -54,6 +54,7 @@ class PhotoFragment : Fragment() {
         clickToChoosePhoto()
         insertUserOnDatabase(user)
         observeVMEvents()
+        backToPreviousStep()
     }
 
     private fun clickToChoosePhoto() {
@@ -110,5 +111,11 @@ class PhotoFragment : Fragment() {
             Bundle().apply {
                 putParcelable("REGISTER_USER", user)
             })
+    }
+
+    private fun backToPreviousStep(){
+        binding.photoButtonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

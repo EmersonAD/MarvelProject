@@ -1,5 +1,6 @@
 package com.souzaemerson.marvelproject.view.register.welcome.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.FragmentWelcomeBinding
 import com.souzaemerson.marvelproject.view.login.activity.LoginActivity
+import com.souzaemerson.marvelproject.view.register.activity.RegisterActivity
 
 class WelcomeFragment : Fragment() {
     private lateinit var binding: FragmentWelcomeBinding
@@ -35,10 +37,7 @@ class WelcomeFragment : Fragment() {
         binding.welcome.text = welcomeName
     }
 
-    private fun goToLoginPage() {
-        binding.welcomeButton.setOnClickListener {
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
-        }
+    private fun goToLoginPage(){
+        (activity as RegisterActivity).backToLoginStep()
     }
 }
