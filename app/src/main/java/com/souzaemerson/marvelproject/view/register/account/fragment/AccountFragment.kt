@@ -5,17 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.FragmentAccountBinding
 import com.souzaemerson.marvelproject.util.setError
 import com.souzaemerson.marvelproject.view.register.account.viewmodel.AccountViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
-    private lateinit var viewModel: AccountViewModel
+    private val viewModel by viewModels<AccountViewModel>()
     private lateinit var user: User
 
     override fun onCreateView(
@@ -29,9 +31,6 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = AccountViewModel.AccountViewModelProvideFactory()
-            .create(AccountViewModel::class.java)
 
         observeVMEvents()
         goToPasswordStep()

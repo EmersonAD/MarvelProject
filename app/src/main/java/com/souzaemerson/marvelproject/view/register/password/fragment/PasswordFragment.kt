@@ -5,17 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.databinding.FragmentPasswordBinding
 import com.souzaemerson.marvelproject.util.setError
 import com.souzaemerson.marvelproject.view.register.password.viewmodel.PasswordViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 class PasswordFragment : Fragment() {
 
     private lateinit var binding: FragmentPasswordBinding
-    private lateinit var viewModel: PasswordViewModel
+    private val viewModel by viewModels<PasswordViewModel>()
     private lateinit var user: User
 
     override fun onCreateView(
@@ -29,8 +31,7 @@ class PasswordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = PasswordViewModel.PasswordViewModelProvideFactory()
-            .create(PasswordViewModel::class.java)
+
         user = arguments?.getParcelable<User>("REGISTER_USER") as User
 
         observeVMEvents()

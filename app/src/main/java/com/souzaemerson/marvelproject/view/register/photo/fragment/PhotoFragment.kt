@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
@@ -23,13 +24,10 @@ import kotlinx.coroutines.Dispatchers
 
 class PhotoFragment : Fragment() {
     private lateinit var binding: FragmentPhotoBinding
-    private lateinit var viewModel: PhotoViewModel
-    private lateinit var repository: RegisterRepository
+    private val viewModel by viewModels<PhotoViewModel>()
     private lateinit var user: User
     private var uriImage: Uri? = null
-    private val dao: UserDAO by lazy {
-        AppDatabase.getDb(requireContext()).userDao()
-    }
+
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent()){ uri ->
         uri?.let {
             setImageFromGallery(it)
@@ -47,9 +45,6 @@ class PhotoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         user = arguments?.getParcelable<User>("REGISTER_USER") as User
 
-        repository = RegisterRepositoryImpl(dao)
-        viewModel = PhotoViewModel.PhotoViewModelProvider(repository, Dispatchers.IO)
-            .create(PhotoViewModel::class.java)
 
         clickToChoosePhoto()
         insertUserOnDatabase(user)

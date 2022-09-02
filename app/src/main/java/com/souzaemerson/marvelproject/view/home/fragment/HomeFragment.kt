@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
@@ -12,18 +13,19 @@ import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.core.hasInternet
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.model.User
-import com.souzaemerson.marvelproject.data.network.ApiService
 import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
 import com.souzaemerson.marvelproject.data.repository.character.CharactersRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.FragmentHomeBinding
 import com.souzaemerson.marvelproject.util.*
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.home.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment() {
-    lateinit var viewModel: HomeViewModel
+    private val viewModel by viewModels<HomeViewModel>()
     lateinit var repository: CharacterRepository
     lateinit var binding: FragmentHomeBinding
     private lateinit var user: User
@@ -42,10 +44,6 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.tag("CONNECTION").i(hasInternet(context).toString())
-
-        repository = CharactersRepositoryImpl(ApiService.service)
-        viewModel = HomeViewModel.HomeViewModelProviderFactory(repository, Dispatchers.IO)
-            .create(HomeViewModel::class.java)
 
         activity?.let {
            user = it.intent?.getParcelableExtra<User>("USER") as User

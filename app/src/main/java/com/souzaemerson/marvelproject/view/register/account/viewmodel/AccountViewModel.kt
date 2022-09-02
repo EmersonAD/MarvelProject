@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.souzaemerson.marvelproject.R
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 class AccountViewModel : ViewModel() {
 
@@ -51,15 +52,4 @@ class AccountViewModel : ViewModel() {
         if (name.isEmpty()) {
             R.string.invalid_name
         } else null
-
-    class AccountViewModelProvideFactory(
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(AccountViewModel::class.java)) {
-                return AccountViewModel() as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-
-    }
 }

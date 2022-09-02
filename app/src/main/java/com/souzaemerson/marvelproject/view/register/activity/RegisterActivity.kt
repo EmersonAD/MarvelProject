@@ -8,7 +8,9 @@ import androidx.navigation.fragment.NavHostFragment
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.databinding.ActivityRegisterBinding
 import com.souzaemerson.marvelproject.view.login.activity.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var navController: NavController

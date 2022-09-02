@@ -13,12 +13,6 @@ interface CharacterDAO {
     @Delete
     suspend fun deleteCharacter(result: Favorites)
 
-    @Query("SELECT * FROM favorites_table")
-    fun getAllCharacters(): LiveData<List<Favorites>>
-
-    @Query("SELECT * FROM favorites_table WHERE id = :characterId")
-    suspend fun getFavoriteCharacter(characterId: Long): Favorites?
-
     @Query("SELECT * FROM favorites_table WHERE email = :email")
     fun getAllCharactersByUser(email: String): LiveData<List<Favorites>>
 

@@ -2,8 +2,9 @@ package com.souzaemerson.marvelproject.data.repository.character
 
 import com.souzaemerson.marvelproject.data.model.CharacterResponse
 import com.souzaemerson.marvelproject.data.network.Service
+import javax.inject.Inject
 
-class CharactersRepositoryImpl(private val api: Service) : CharacterRepository {
+class CharactersRepositoryImpl @Inject constructor(private val api: Service) : CharacterRepository {
     override suspend fun getCharacters(
         apikey: String,
         hash: String,

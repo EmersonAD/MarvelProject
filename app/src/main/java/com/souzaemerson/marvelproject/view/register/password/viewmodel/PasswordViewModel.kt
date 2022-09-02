@@ -3,9 +3,8 @@ package com.souzaemerson.marvelproject.view.register.password.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.souzaemerson.marvelproject.R
-import java.lang.IllegalArgumentException
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 class PasswordViewModel : ViewModel() {
 
@@ -42,12 +41,4 @@ class PasswordViewModel : ViewModel() {
             R.string.different_password
         } else null
 
-    class PasswordViewModelProvideFactory : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(PasswordViewModel::class.java)){
-                return PasswordViewModel() as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
 }

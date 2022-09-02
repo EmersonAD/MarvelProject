@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
@@ -18,13 +20,11 @@ import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.model.comic.Result
-import com.souzaemerson.marvelproject.data.network.ApiService
 import com.souzaemerson.marvelproject.data.repository.category.CategoryRepository
 import com.souzaemerson.marvelproject.data.repository.category.CategoryRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.CharacterDetailsBinding
 import com.souzaemerson.marvelproject.util.apikey
 import com.souzaemerson.marvelproject.util.hash
-import com.souzaemerson.marvelproject.util.setVisibilityAs
 import com.souzaemerson.marvelproject.util.ts
 import com.souzaemerson.marvelproject.view.detail.adapter.CarouselAdapter
 import com.souzaemerson.marvelproject.view.detail.adapter.ComicsAndSeriesFields
@@ -32,23 +32,19 @@ import com.souzaemerson.marvelproject.view.detail.decoration.BoundsOffsetDecorat
 import com.souzaemerson.marvelproject.view.detail.decoration.LinearHorizontalSpacingDecoration
 import com.souzaemerson.marvelproject.view.detail.decoration.ProminentLayoutManager
 import com.souzaemerson.marvelproject.view.detail.viewmodel.DetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
-    private lateinit var viewModel: DetailViewModel
-    private lateinit var repository: DatabaseRepository
-    private lateinit var categoryRepository: CategoryRepository
+    private val viewModel by viewModels<DetailViewModel>()
     private lateinit var snapHelper: SnapHelper
     private lateinit var carouselAdapter: CarouselAdapter
     private lateinit var binding: CharacterDetailsBinding
-    private lateinit var result: Result
     private lateinit var favorite: Favorites
     private lateinit var user: User
     private var checkCharacter: Boolean = false
-    private val dao: CharacterDAO by lazy {
-        AppDatabase.getDb(requireContext()).characterDao()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,11 +58,6 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         favorite = arguments?.getParcelable<Favorites>("FAVORITE") as Favorites
-        repository = DatabaseRepositoryImpl(dao)
-        categoryRepository = CategoryRepositoryImpl(ApiService.service)
-        viewModel = DetailViewModel.DetailViewModelProviderFactory(
-            repository, Dispatchers.IO, categoryRepository
-        ).create(DetailViewModel::class.java)
 
         getUserByIntent()
 

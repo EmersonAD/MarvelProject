@@ -28,6 +28,7 @@
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_register.xml" value="0.19054652880354506" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.3546875" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/bottom_layout.xml" value="0.2" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/character_details.xml" value="0.33" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/character_item.xml" value="0.67" />
@@ -37,6 +38,7 @@
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_password.xml" value="0.25" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_photo.xml" value="0.22" />
+        <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_splash_screen.xml" value="0.3546875" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/fragment_welcome.xml" value="0.25" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/item_carousel.xml" value="0.33" />
         <entry key="..\:/Users/souzaemerson/AndroidStudioProjects/MarvelProject/app/src/main/res/layout/loading_button.xml" value="0.29444444444444445" />

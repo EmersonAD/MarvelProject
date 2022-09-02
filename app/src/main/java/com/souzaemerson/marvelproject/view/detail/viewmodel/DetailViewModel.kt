@@ -1,23 +1,23 @@
 package com.souzaemerson.marvelproject.view.detail.viewmodel
 
-import android.view.View
-import android.widget.TextView
 import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.core.State
 import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
 import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.comic.ComicResponse
-import com.souzaemerson.marvelproject.data.model.comic.Result
 import com.souzaemerson.marvelproject.data.repository.category.CategoryRepository
-import com.souzaemerson.marvelproject.util.setVisibilityAs
+import com.souzaemerson.marvelproject.di.qualifier.IO
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import javax.inject.Inject
 
-class DetailViewModel(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
     private val databaseRepository: DatabaseRepository,
-    private val ioDispatcher: CoroutineDispatcher,
+    @IO private val ioDispatcher: CoroutineDispatcher,
     private var categoryRepository: CategoryRepository
 ) : ViewModel() {
 
@@ -107,19 +107,6 @@ class DetailViewModel(
         } catch (e: Exception) {
             _delete.value = State.loading(false)
             _delete.value = State.error(e)
-        }
-    }
-
-    class DetailViewModelProviderFactory(
-        private val repository: DatabaseRepository,
-        private val ioDispatcher: CoroutineDispatcher,
-        private val categoryRepository: CategoryRepository
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-                return DetailViewModel(repository, ioDispatcher, categoryRepository) as T
-            }
-            throw IllegalArgumentException("Unknown viewModel Class")
         }
     }
 }

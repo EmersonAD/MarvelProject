@@ -3,6 +3,8 @@ package com.souzaemerson.marvelproject.core
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
 fun hasInternet(context: Context?): Boolean {
     val connectivityManager =

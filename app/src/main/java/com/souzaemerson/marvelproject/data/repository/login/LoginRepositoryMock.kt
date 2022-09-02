@@ -3,7 +3,7 @@ package com.souzaemerson.marvelproject.data.repository.login
 import com.souzaemerson.marvelproject.data.mockdatabase.MockDatabase
 import com.souzaemerson.marvelproject.data.model.User
 
-class LoginRepositoryMock: LoginRepository {
+class LoginRepositoryMock(private val mock: MockDatabase): LoginRepository {
     override suspend fun userLogin(email: String, password: String): User =
-        MockDatabase.mockLogin(email, password)
+        mock.mockLogin(email, password)
 }

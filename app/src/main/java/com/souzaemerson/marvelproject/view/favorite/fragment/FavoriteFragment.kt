@@ -5,31 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
-import com.souzaemerson.marvelproject.data.db.AppDatabase
-import com.souzaemerson.marvelproject.data.db.dao.CharacterDAO
-import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepository
-import com.souzaemerson.marvelproject.data.db.repository.DatabaseRepositoryImpl
 import com.souzaemerson.marvelproject.data.model.Favorites
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.model.User
+import com.souzaemerson.marvelproject.data.model.converterToResult
 import com.souzaemerson.marvelproject.databinding.FragmentFavoriteBinding
 import com.souzaemerson.marvelproject.util.ConfirmDialog
 import com.souzaemerson.marvelproject.util.toast
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.favorite.viewmodel.FavoriteViewModel
-import com.souzaemerson.marvelproject.data.model.converterToResult
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
-    lateinit var viewModel: FavoriteViewModel
-    lateinit var repository: DatabaseRepository
-    private val dao: CharacterDAO by lazy {
-        AppDatabase.getDb(requireContext()).characterDao()
-    }
+    private val viewModel by viewModels<FavoriteViewModel>()
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var user: User
     private lateinit var favoriteAdapter: CharacterAdapter
@@ -49,8 +43,6 @@ class FavoriteFragment : Fragment() {
         activity?.let {
             user = it.intent.getParcelableExtra<User>("USER") as User
         }
-        repository = DatabaseRepositoryImpl(dao)
-        viewModel = FavoriteViewModel(repository, Dispatchers.IO)
 
         observeVMEvents()
     }

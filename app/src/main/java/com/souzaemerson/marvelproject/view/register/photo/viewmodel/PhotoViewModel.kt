@@ -4,17 +4,22 @@ import androidx.lifecycle.*
 import com.souzaemerson.marvelproject.core.State
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.repository.register.RegisterRepository
+import com.souzaemerson.marvelproject.di.qualifier.IO
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class PhotoViewModel(
+@HiltViewModel
+class PhotoViewModel @Inject constructor(
     private val repository: RegisterRepository,
-    private val ioDispatcher: CoroutineDispatcher
+    @IO private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _user = MutableLiveData<State<Boolean>>()
     val user: LiveData<State<Boolean>> = _user
+
     fun insertNewUserOnDatabase(user: User) {
         viewModelScope.launch {
             try {
@@ -27,18 +32,6 @@ class PhotoViewModel(
             } catch (e: Exception) {
                 _user.value = State.error(e)
             }
-        }
-    }
-
-    class PhotoViewModelProvider(
-        private val repository: RegisterRepository,
-        private val ioDispatcher: CoroutineDispatcher
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(PhotoViewModel::class.java)) {
-                return PhotoViewModel(repository, ioDispatcher) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel Class")
         }
     }
 }
