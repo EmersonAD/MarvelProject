@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        app:menu="@menu/bottom_navigator"
+        app:menu="@menu/bottom_navigation"
         app:labelVisibilityMode="unlabeled"
         android:foregroundTint="@color/red_700"
         app:itemIconTint="@color/white"

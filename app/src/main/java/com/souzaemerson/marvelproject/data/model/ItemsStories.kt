@@ -8,6 +8,6 @@ data class ItemsStories(
     val resourceURI: String,
     @SerializedName("name")
     val name: String,
-    @SerializedName("returned")
+    @SerializedName("type")
     val type: String
 ): Serializable

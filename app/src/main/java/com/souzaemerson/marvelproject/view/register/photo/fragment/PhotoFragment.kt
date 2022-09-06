@@ -12,16 +12,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.Status
-import com.souzaemerson.marvelproject.data.db.AppDatabase
-import com.souzaemerson.marvelproject.data.db.dao.UserDAO
 import com.souzaemerson.marvelproject.data.model.User
-import com.souzaemerson.marvelproject.data.repository.register.RegisterRepository
-import com.souzaemerson.marvelproject.data.repository.register.RegisterRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.FragmentPhotoBinding
 import com.souzaemerson.marvelproject.view.register.photo.viewmodel.PhotoViewModel
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class PhotoFragment : Fragment() {
     private lateinit var binding: FragmentPhotoBinding
     private val viewModel by viewModels<PhotoViewModel>()
