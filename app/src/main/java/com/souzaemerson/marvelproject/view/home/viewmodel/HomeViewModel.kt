@@ -79,12 +79,7 @@ class HomeViewModel @Inject constructor(
     private fun existsInCache(): Boolean =
         PreferencesUtil(getApplication()).containsObjectInPreferences("CHARACTER")
 
-    private fun valueAlreadySetup(): Boolean {
-        return _response.value?.data?.data?.results.isNullOrEmpty()
-    }
-
-
-    fun populateCharacter(characterResponse: CharacterResponse) {
+    private fun populateCharacter(characterResponse: CharacterResponse) {
         PreferencesUtil(getApplication()).putObjectIntoPreferences("CHARACTER", characterResponse)
     }
 
