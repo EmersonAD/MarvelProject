@@ -45,12 +45,12 @@ ext{
     kotlin_version = "1.4.32"
     retrofitVersion = '2.9.0'
     googleGsonVersion = '2.8.0'
-    okHttpVersion = '4.10.0'
+    okHttpVersion = '4.8.0'
     lifecycleVersion = '2.2.0'
-    coroutinesVersion = '1.6.4'
-    nav_version = '2.5.1'
+    coroutinesVersion = '1.4.3'
+    nav_version = '2.5.0'
     glide_version = '4.11.0'
-    room_version = '2.4.3'
+    room_version = '2.4.2'
 }
 
 dependencies {

@@ -11,16 +11,16 @@ import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.BaseFragment
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.core.hasInternet
+import com.souzaemerson.marvelproject.core.preferences.PreferencesUtil
+import com.souzaemerson.marvelproject.data.model.CharacterResponse
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
-import com.souzaemerson.marvelproject.data.repository.character.CharactersRepositoryImpl
 import com.souzaemerson.marvelproject.databinding.FragmentHomeBinding
 import com.souzaemerson.marvelproject.util.*
 import com.souzaemerson.marvelproject.view.adapter.CharacterAdapter
 import com.souzaemerson.marvelproject.view.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -46,7 +46,7 @@ class HomeFragment : BaseFragment() {
         Timber.tag("CONNECTION").i(hasInternet(context).toString())
 
         activity?.let {
-           user = it.intent?.getParcelableExtra<User>("USER") as User
+            user = it.intent?.getParcelableExtra<User>("USER") as User
         }
         toast(user.email)
 
@@ -148,7 +148,6 @@ class HomeFragment : BaseFragment() {
                 }
             }
         }
-
         viewModel.search.observe(viewLifecycleOwner) {
             if (viewLifecycleOwner.lifecycle.currentState != Lifecycle.State.RESUMED) return@observe
             when (it.status) {
@@ -166,6 +165,9 @@ class HomeFragment : BaseFragment() {
                 }
             }
         }
+        viewModel.responseInCache.observe(viewLifecycleOwner) { characterList ->
+            setRecyclerView(characterList)
+        }
     }
 
     private fun setAdapter(characterList: List<Results>) {
@@ -173,7 +175,7 @@ class HomeFragment : BaseFragment() {
             Timber.tag("Click").i(it.name)
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment,
                 Bundle().apply {
-                        putParcelable("FAVORITE", it)
+                    putParcelable("FAVORITE", it)
                 })
         })
     }
