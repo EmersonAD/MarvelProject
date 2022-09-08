@@ -11,8 +11,6 @@ import com.souzaemerson.marvelproject.R
 import com.souzaemerson.marvelproject.core.BaseFragment
 import com.souzaemerson.marvelproject.core.Status
 import com.souzaemerson.marvelproject.core.hasInternet
-import com.souzaemerson.marvelproject.core.preferences.PreferencesUtil
-import com.souzaemerson.marvelproject.data.model.CharacterResponse
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.model.User
 import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository

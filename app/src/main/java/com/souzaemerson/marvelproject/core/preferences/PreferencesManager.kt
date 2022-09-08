@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import com.google.gson.Gson
 
-class PreferencesUtil(context: Context) {
+class PreferencesManager(context: Context) {
     private val sharedPreferences = context.getSharedPreferences(PREFERENCES, MODE_PRIVATE)
 
     fun <T> putObjectIntoPreferences(key: String, obj: T) {

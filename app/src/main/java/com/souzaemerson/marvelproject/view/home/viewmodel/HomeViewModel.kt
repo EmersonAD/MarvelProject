@@ -7,11 +7,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.souzaemerson.marvelproject.core.State
-import com.souzaemerson.marvelproject.core.preferences.PreferencesUtil
+import com.souzaemerson.marvelproject.core.preferences.PreferencesManager
 import com.souzaemerson.marvelproject.data.model.CharacterResponse
 import com.souzaemerson.marvelproject.data.model.Results
 import com.souzaemerson.marvelproject.data.repository.character.CharacterRepository
 import com.souzaemerson.marvelproject.di.qualifier.IO
+import com.souzaemerson.marvelproject.util.KEY_CHARACTER_CACHE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
@@ -21,10 +22,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    @ApplicationContext application: Context,
+    @ApplicationContext context: Context,
     private val repository: CharacterRepository,
     @IO private val ioDispatcher: CoroutineDispatcher
-) : AndroidViewModel(application as Application) {
+) : AndroidViewModel(context as Application) {
 
     private val _response = MutableLiveData<State<CharacterResponse>>()
     val response: LiveData<State<CharacterResponse>> = _response
@@ -53,7 +54,7 @@ class HomeViewModel @Inject constructor(
                     _response.value = State.loading(false)
                 }
             } else {
-                getCharacterReponseInCache()?.let { characterResponse ->
+                getCharacterResponseInCache()?.let { characterResponse ->
                     _responseInCache.value = characterResponse.data.results
                 }
             }
@@ -77,15 +78,15 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun existsInCache(): Boolean =
-        PreferencesUtil(getApplication()).containsObjectInPreferences("CHARACTER")
+        PreferencesManager(getApplication()).containsObjectInPreferences(KEY_CHARACTER_CACHE)
 
     private fun populateCharacter(characterResponse: CharacterResponse) {
-        PreferencesUtil(getApplication()).putObjectIntoPreferences("CHARACTER", characterResponse)
+        PreferencesManager(getApplication()).putObjectIntoPreferences(KEY_CHARACTER_CACHE, characterResponse)
     }
 
-    private fun getCharacterReponseInCache() =
-        PreferencesUtil(getApplication()).getObjectFromPreferences(
-            "CHARACTER",
+    private fun getCharacterResponseInCache() =
+        PreferencesManager(getApplication()).getObjectFromPreferences(
+            KEY_CHARACTER_CACHE,
             CharacterResponse::class.java
         )
 }
