@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:elevation="1dp">
 
         <androidx.cardview.widget.CardView
@@ -95,7 +95,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:padding="8dp"
-            android:text="Title"
+            android:text="@string/title_details"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -142,7 +142,8 @@
             android:src="@drawable/gradient_carousel"
             app:layout_constraintBottom_toBottomOf="@id/recycler_category"
             app:layout_constraintStart_toStartOf="@id/recycler_category"
-            app:layout_constraintTop_toTopOf="@id/recycler_category" />
+            app:layout_constraintTop_toTopOf="@id/recycler_category"
+            android:contentDescription="@string/left_shadow" />
 
         <ImageView
             android:id="@+id/gradient_end"
@@ -153,7 +154,8 @@
             android:src="@drawable/gradient_carousel"
             app:layout_constraintBottom_toBottomOf="@id/recycler_category"
             app:layout_constraintEnd_toEndOf="@id/recycler_category"
-            app:layout_constraintTop_toTopOf="@id/recycler_category" />
+            app:layout_constraintTop_toTopOf="@id/recycler_category"
+            android:contentDescription="@string/right_shadow" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_comics"
@@ -164,7 +166,7 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/marvel_font"
             android:letterSpacing="1"
-            android:text="COMICS"
+            android:text="@string/comics"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -195,7 +197,7 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/marvel_font"
             android:letterSpacing="1"
-            android:text="SERIES"
+            android:text="@string/series"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -223,7 +225,8 @@
             android:src="@drawable/gradient_carousel"
             app:layout_constraintBottom_toBottomOf="@id/recycler_category_series"
             app:layout_constraintStart_toStartOf="@id/recycler_category_series"
-            app:layout_constraintTop_toTopOf="@id/recycler_category_series" />
+            app:layout_constraintTop_toTopOf="@id/recycler_category_series"
+            android:contentDescription="@string/left_shadow" />
 
         <ImageView
             android:id="@+id/gradient_end2"
@@ -234,7 +237,8 @@
             android:src="@drawable/gradient_carousel"
             app:layout_constraintBottom_toBottomOf="@id/recycler_category_series"
             app:layout_constraintEnd_toEndOf="@id/recycler_category_series"
-            app:layout_constraintTop_toTopOf="@id/recycler_category_series" />
+            app:layout_constraintTop_toTopOf="@id/recycler_category_series"
+            android:contentDescription="@string/right_shadow" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_category_series"
@@ -260,7 +264,7 @@
             android:backgroundTint="@color/black"
             android:contentDescription="@null"
             android:gravity="center"
-            android:text="FAVORITAR"
+            android:text="@string/FAVORITAR_FAB"
             app:fabSize="normal"
             app:icon="@drawable/ic_baseline_favorite_border_24"
             app:layout_constraintBottom_toTopOf="@id/details_title"
@@ -280,7 +284,7 @@
             android:backgroundTint="@color/black"
             android:contentDescription="@null"
             android:visibility="gone"
-            android:text="PERSONAGEM"
+            android:text="@string/personagem"
             android:textSize="12sp"
             app:fabSize="normal"
             app:icon="@drawable/ic_baseline_keyboard_return_24"

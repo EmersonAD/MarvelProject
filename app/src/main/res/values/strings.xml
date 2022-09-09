@@ -53,5 +53,12 @@
     <string name="invalid_name">Digite um nome válido</string>
     <string name="FAVORITAR_FAB">FAVORITAR</string>
     <string name="FAVORITADO_FAB">FAVORITADO</string>
+    <string name="back_to_character">PERSONAGEM</string>
+    <string name="comics">COMICS</string>
+    <string name="series">SERIES</string>
+    <string name="carrosel_series">carrosel series</string>
+    <string name="left_shadow">left_shadow</string>
+    <string name="right_shadow">right shadow</string>
+    <string name="personagem">PERSONAGEM</string>
 
 </resources>
